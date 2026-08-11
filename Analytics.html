@@ -1,0 +1,280 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>URL Analytics - ShortenIt</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">tailwind.config = {darkMode: "class", theme: {extend: {colors: {"surface-variant": "#d2e4f8", error: "#ba1a1a", "on-tertiary": "#ffffff", tertiary: "#004c7a", outline: "#777587", "surface-container-lowest": "#ffffff", "on-surface": "#0b1d2b", "on-tertiary-fixed-variant": "#004a77", "on-primary-fixed": "#001d32", secondary: "#42617c", "on-surface-variant": "#464555", "on-secondary-container": "#45647e", "on-error-container": "#93000a", "primary-container": "#44637f", "error-container": "#ffdad6", "on-primary-fixed-variant": "#2a4965", "surface-container-highest": "#d2e4f8", "surface-tint": "#42617d", "primary-fixed": "#cde5ff", "secondary-container": "#c1e0ff", "surface-container-high": "#d8eafe", background: "#f7f9ff", "on-primary-container": "#c0dfff", surface: "#f7f9ff", "inverse-on-surface": "#e7f2ff", "on-tertiary-container": "#c2deff", "outline-variant": "#c7c4d8", "surface-bright": "#f7f9ff", "tertiary-fixed": "#cfe5ff", "secondary-fixed": "#cce5ff", "on-secondary-fixed-variant": "#2a4a63", "on-background": "#0b1d2b", "on-tertiary-fixed": "#001d33", "surface-container": "#e2efff", "tertiary-container": "#296494", "inverse-surface": "#213241", "primary-fixed-dim": "#aacaea", "surface-dim": "#cadcf0", "on-error": "#ffffff", "inverse-primary": "#aacaea", "on-secondary": "#ffffff", "on-secondary-fixed": "#001e31", primary: "#2b4b66", "secondary-fixed-dim": "#aacae8", "tertiary-fixed-dim": "#98cbff", "surface-container-low": "#edf4ff", "on-primary": "#ffffff"}, borderRadius: {DEFAULT: "0.25rem", lg: "0.5rem", xl: "0.75rem", full: "9999px"}, spacing: {lg: "24px", "margin-desktop": "32px", md: "16px", "margin-mobile": "16px", base: "4px", xs: "4px", "2xl": "48px", sm: "8px", gutter: "24px", xl: "32px"}, fontFamily: {"label-md": ["Inter"], "label-sm": ["Inter"], "body-md": ["Inter"], "headline-sm": ["Inter"], "body-lg": ["Inter"], "body-sm": ["Inter"], code: ["Inter"], "headline-md": ["Inter"], "display-lg": ["Inter"], headline: ["Inter"], display: ["Inter"], body: ["Inter"], label: ["Inter"]}, fontSize: {"label-md": ["14px", {lineHeight: "20px", letterSpacing: "0.01em", fontWeight: "500"}], "label-sm": ["12px", {lineHeight: "16px", fontWeight: "600"}], "body-md": ["16px", {lineHeight: "24px", fontWeight: "400"}], "headline-sm": ["20px", {lineHeight: "28px", fontWeight: "600"}], "body-lg": ["18px", {lineHeight: "28px", fontWeight: "400"}], "body-sm": ["14px", {lineHeight: "20px", fontWeight: "400"}], code: ["14px", {lineHeight: "20px", fontWeight: "400"}], "headline-md": ["24px", {lineHeight: "32px", letterSpacing: "-0.01em", fontWeight: "600"}], "display-lg": ["36px", {lineHeight: "44px", letterSpacing: "-0.02em", fontWeight: "700"}]}}}};</script>
+<style>
+        .chart-bar {
+            transition: height 0.5s ease-out, background-color 0.2s ease;
+        }
+        .chart-bar:hover {
+            background-color: #3525cd;
+        }
+      </style>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen flex text-body-md overflow-x-hidden">
+<!-- SideNavBar -->
+<nav class="bg-white dark:bg-inverse-surface text-primary dark:text-inverse-primary font-label-md text-label-md docked left-0 h-full w-[280px] hidden md:flex flex-col border-r border-outline-variant dark:border-outline shadow-sm dark:shadow-none shrink-0 fixed top-0 bottom-0 z-50">
+<div class="flex flex-col h-full py-lg px-md">
+<div class="mb-xl px-sm flex items-center gap-sm">
+<span class="material-symbols-outlined text-3xl">link</span>
+<div>
+<h1 class="font-headline-md text-headline-md font-bold text-primary dark:text-inverse-primary">ShortenIt</h1>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Pro Plan</p>
+</div>
+</div>
+<button class="bg-primary text-on-primary rounded-lg py-sm px-md mb-xl flex items-center justify-center gap-sm hover:opacity-90 transition-opacity font-label-md w-full">
+<span class="material-symbols-outlined">add</span>
+                Create New Link
+            </button>
+<ul class="flex flex-col gap-sm flex-1">
+<li class="">
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-primary hover:bg-surface-container-low dark:hover:bg-surface-variant transition-colors flex items-center gap-md px-md py-sm rounded-lg opacity-80 transition-all duration-150" href="#">
+<span class="material-symbols-outlined" data-weight="outline">dashboard</span>
+                        Dashboard
+                    </a>
+</li>
+<li class="">
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-primary hover:bg-surface-container-low dark:hover:bg-surface-variant transition-colors flex items-center gap-md px-md py-sm rounded-lg opacity-80 transition-all duration-150" href="#">
+<span class="material-symbols-outlined" data-weight="outline">link</span>
+                        My URLs
+                    </a>
+</li>
+<li class="">
+<a class="text-primary dark:text-inverse-primary font-bold border-r-4 border-primary bg-surface-container-low dark:hover:bg-surface-variant transition-colors flex items-center gap-md px-md py-sm opacity-80 transition-all duration-150" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: &quot;FILL&quot; 1;">bar_chart</span>
+                        Analytics
+                    </a>
+</li>
+<li class="">
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-primary hover:bg-surface-container-low dark:hover:bg-surface-variant transition-colors flex items-center gap-md px-md py-sm rounded-lg opacity-80 transition-all duration-150" href="#">
+<span class="material-symbols-outlined" data-weight="outline">person</span>
+                        Profile
+                    </a>
+</li>
+<li class="">
+
+</li>
+</ul>
+<div class="mt-auto pt-lg border-t border-outline-variant">
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-primary hover:bg-surface-container-low dark:hover:bg-surface-variant transition-colors flex items-center gap-md px-md py-sm rounded-lg opacity-80 transition-all duration-150" href="#">
+<span class="material-symbols-outlined" data-weight="outline">logout</span>
+                    Logout
+                </a>
+</div>
+</div>
+</nav>
+<!-- Main Content Area -->
+<main class="flex-1 md:ml-[280px] flex flex-col min-h-screen">
+<!-- TopNavBar -->
+<header class="bg-surface dark:bg-inverse-surface text-primary dark:text-inverse-primary font-headline-sm text-headline-sm docked top-0 w-full flat no shadows flex justify-between items-center px-margin-mobile md:px-margin-desktop py-base w-full sticky top-0 z-40">
+<div class="flex items-center gap-md">
+<button class="md:hidden p-sm text-on-surface hover:bg-surface-variant rounded-full transition-colors">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<span class="font-headline-md text-headline-md font-bold text-primary md:hidden">ShortenIt</span>
+<h2 class="hidden md:block font-headline-sm text-headline-sm text-on-surface font-semibold">URL Analytics</h2>
+</div>
+<div class="flex items-center gap-md">
+<div class="relative hidden sm:block">
+<span class="material-symbols-outlined absolute left-sm top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="pl-xl pr-sm py-sm rounded-full border border-outline-variant bg-surface-container-low focus:ring-2 focus:ring-primary focus:border-primary focus:outline-none transition-shadow text-body-sm font-body-sm text-on-surface w-64" placeholder="Search URLs..." type="text">
+</div>
+<button class="hover:bg-surface-variant rounded-full p-2 scale-95 duration-100 text-on-surface-variant">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="w-8 h-8 rounded-full overflow-hidden border border-outline-variant ml-sm hover:scale-95 duration-100">
+<img alt="User Profile" class="w-full h-full object-cover" data-alt="A clean, professional headshot of a user against a bright, minimalist studio background. The lighting is soft and even, typical of a modern corporate portrait. The colors are muted and natural, fitting a high-end UI aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDpD3r9EjV0znxuO9ktAaBIrt7PJYYsKQ3LvsODE9kfuN4g3TXSIpwhBXKUhw7dZEWq5-x_YYxTHs7j65l39C6TzDP5zRJ43DzvSMYkbUSzbagrYb6yaPs754M5e1C1-ZTWsfVos10_fZg4z2dpaxjSMi9Zeq20U2XlHJRy3_qKKU_pQxb7ZbUlyJyF56WVBGyCUPogTcUkvkWAGuT1GXFW0yRj6YxzmLzshA4RQkE7HOYZviYEpfht">
+</button>
+</div>
+</header>
+<div class="p-margin-mobile md:p-margin-desktop lg:p-xl max-w-[1440px] mx-auto w-full flex-1 flex flex-col gap-lg">
+<!-- Hero / URL Details -->
+<section class="bg-white rounded-xl shadow-sm border border-outline-variant p-lg flex flex-col sm:flex-row justify-between items-start sm:items-center gap-lg">
+<div class="flex-1 min-w-0">
+<div class="flex items-center gap-md mb-xs">
+<h2 class="font-headline-md text-headline-md text-on-surface truncate">shr.it/summer-promo</h2>
+<span class="inline-flex items-center px-sm py-0.5 rounded-full text-label-sm font-label-sm bg-secondary-container text-on-secondary-container">
+                            Active
+                        </span>
+</div>
+<div class="flex items-center gap-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-sm">subdirectory_arrow_right</span>
+<a class="font-body-sm text-body-sm truncate hover:underline text-primary" href="#">https://marketing.example.com/campaigns/2024/summer-promotion-v2</a>
+</div>
+</div>
+<div class="flex gap-sm shrink-0">
+<button class="flex items-center gap-xs px-md py-sm border border-outline-variant rounded-lg text-on-surface hover:bg-surface-container-low transition-colors font-label-md text-label-md">
+<span class="material-symbols-outlined text-[20px]">content_copy</span>
+                        Copy
+                    </button>
+<button class="flex items-center gap-xs px-md py-sm bg-primary text-on-primary rounded-lg hover:bg-primary-container hover:text-on-primary-container transition-colors font-label-md text-label-md">
+<span class="material-symbols-outlined text-[20px]">qr_code</span>
+                        QR Code
+                    </button>
+</div>
+</section>
+<!-- Main Dashboard Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-lg">
+<!-- Left Column (Stats & Chart) -->
+<div class="lg:col-span-2 flex flex-col gap-lg">
+<!-- Stats Grid -->
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-md">
+<div class="bg-white rounded-xl shadow-sm border border-outline-variant p-md">
+<p class="font-label-sm text-label-sm text-on-surface-variant mb-xs">Total Clicks</p>
+<p class="font-display-lg text-display-lg text-on-surface">14.2K</p>
+<div class="flex items-center gap-xs text-secondary mt-xs">
+<span class="material-symbols-outlined text-[16px]">trending_up</span>
+<span class="font-label-sm text-label-sm">+12% this week</span>
+</div>
+</div>
+<div class="bg-white rounded-xl shadow-sm border border-outline-variant p-md">
+<p class="font-label-sm text-label-sm text-on-surface-variant mb-xs">Creation Date</p>
+<p class="font-headline-sm text-headline-sm text-on-surface mt-sm">Oct 12, 2023</p>
+</div>
+<div class="bg-white rounded-xl shadow-sm border border-outline-variant p-md">
+<p class="font-label-sm text-label-sm text-on-surface-variant mb-xs">Last Accessed</p>
+<p class="font-headline-sm text-headline-sm text-on-surface mt-sm">2 mins ago</p>
+</div>
+<div class="bg-white rounded-xl shadow-sm border border-outline-variant p-md">
+<p class="font-label-sm text-label-sm text-on-surface-variant mb-xs">Expiration Date</p>
+<p class="font-headline-sm text-headline-sm text-on-surface mt-sm">Never</p>
+</div>
+</div>
+<!-- Chart Section -->
+<div class="bg-white rounded-xl shadow-sm border border-outline-variant p-lg flex-1 min-h-[360px] flex flex-col">
+<div class="flex justify-between items-center mb-lg">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Clicks Over Time</h3>
+<select class="border border-outline-variant rounded-lg px-sm py-xs text-body-sm font-body-sm bg-white focus:ring-primary focus:border-primary outline-none">
+<option>Last 7 Days</option>
+<option>Last 30 Days</option>
+<option>All Time</option>
+</select>
+</div>
+<!-- Pseudo Recharts Bar Chart -->
+<div class="flex-1 flex items-end gap-sm md:gap-md pt-lg relative">
+<!-- Y-Axis labels (approx) -->
+<div class="absolute left-0 top-0 bottom-0 w-8 flex flex-col justify-between text-on-surface-variant font-label-sm text-label-sm pb-8 border-r border-outline-variant/30">
+<span class="">2k</span>
+<span class="">1.5k</span>
+<span class="">1k</span>
+<span class="">500</span>
+<span class="">0</span>
+</div>
+<!-- Chart Area -->
+<div class="ml-10 flex-1 h-full flex items-end justify-between gap-xs sm:gap-sm pb-8 relative border-b border-outline-variant/30">
+<!-- Grid Lines -->
+<div class="absolute inset-0 flex flex-col justify-between pointer-events-none">
+<div class="w-full border-t border-outline-variant/20 h-0"></div>
+<div class="w-full border-t border-outline-variant/20 h-0"></div>
+<div class="w-full border-t border-outline-variant/20 h-0"></div>
+<div class="w-full border-t border-outline-variant/20 h-0"></div>
+<div class="w-full border-t border-transparent h-0"></div>
+</div>
+<!-- Bars & X-Axis -->
+<div class="flex-1 flex flex-col items-center justify-end h-full z-10 group relative">
+<div class="chart-bar w-full max-w-[40px] bg-primary-fixed hover:bg-primary rounded-t-sm h-[30%]" title="Mon: 600" style="height: 30%;"></div>
+<span class="absolute -bottom-6 font-label-sm text-label-sm text-on-surface-variant">Mon</span>
+</div>
+<div class="flex-1 flex flex-col items-center justify-end h-full z-10 group relative">
+<div class="chart-bar w-full max-w-[40px] bg-primary-fixed hover:bg-primary rounded-t-sm h-[45%]" title="Tue: 900" style="height: 45%;"></div>
+<span class="absolute -bottom-6 font-label-sm text-label-sm text-on-surface-variant">Tue</span>
+</div>
+<div class="flex-1 flex flex-col items-center justify-end h-full z-10 group relative">
+<div class="chart-bar w-full max-w-[40px] bg-primary-fixed hover:bg-primary rounded-t-sm h-[60%]" title="Wed: 1200" style="height: 60%;"></div>
+<span class="absolute -bottom-6 font-label-sm text-label-sm text-on-surface-variant">Wed</span>
+</div>
+<div class="flex-1 flex flex-col items-center justify-end h-full z-10 group relative">
+<div class="chart-bar w-full max-w-[40px] bg-primary-fixed hover:bg-primary rounded-t-sm h-[85%]" title="Thu: 1700" style="height: 85%;"></div>
+<span class="absolute -bottom-6 font-label-sm text-label-sm text-on-surface-variant">Thu</span>
+</div>
+<div class="flex-1 flex flex-col items-center justify-end h-full z-10 group relative">
+<div class="chart-bar w-full max-w-[40px] bg-primary-fixed hover:bg-primary rounded-t-sm h-[70%]" title="Fri: 1400" style="height: 70%;"></div>
+<span class="absolute -bottom-6 font-label-sm text-label-sm text-on-surface-variant">Fri</span>
+</div>
+<div class="flex-1 flex flex-col items-center justify-end h-full z-10 group relative">
+<div class="chart-bar w-full max-w-[40px] bg-primary-fixed hover:bg-primary rounded-t-sm h-[40%]" title="Sat: 800" style="height: 40%;"></div>
+<span class="absolute -bottom-6 font-label-sm text-label-sm text-on-surface-variant">Sat</span>
+</div>
+<div class="flex-1 flex flex-col items-center justify-end h-full z-10 group relative">
+<div class="chart-bar w-full max-w-[40px] bg-primary-fixed hover:bg-primary rounded-t-sm h-[25%]" title="Sun: 500" style="height: 25%;"></div>
+<span class="absolute -bottom-6 font-label-sm text-label-sm text-on-surface-variant">Sun</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column (Summary Sidebar) -->
+<div class="flex flex-col gap-lg">
+<div class="bg-white rounded-xl shadow-sm border border-outline-variant p-lg">
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-md">Summary</h3>
+<div class="space-y-md">
+<div class="flex justify-between items-center py-sm border-b border-outline-variant/50">
+<span class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-xs">
+<span class="material-symbols-outlined text-[18px]">calculate</span>
+                                    Avg. Clicks/Day
+                                </span>
+<span class="font-label-md text-label-md text-on-surface">1,014</span>
+</div>
+<div class="flex justify-between items-center py-sm border-b border-outline-variant/50">
+<span class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-xs">
+<span class="material-symbols-outlined text-[18px]">workspace_premium</span>
+                                    Highest Day
+                                </span>
+<div class="text-right">
+<span class="font-label-md text-label-md text-on-surface block">Thursday</span>
+<span class="font-label-sm text-label-sm text-primary">1,700 clicks</span>
+</div>
+</div>
+<div class="flex justify-between items-center py-sm border-b border-outline-variant/50">
+<span class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-xs">
+<span class="material-symbols-outlined text-[18px]">hourglass_empty</span>
+                                    URL Age
+                                </span>
+<span class="font-label-md text-label-md text-on-surface">14 Days</span>
+</div>
+</div>
+</div>
+<div class="bg-white rounded-xl shadow-sm border border-outline-variant p-lg">
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-md">Top Locations</h3>
+<div class="space-y-sm">
+<div class="flex justify-between items-center bg-surface-container-low p-sm rounded-lg">
+<span class="font-body-sm text-body-sm">United States</span>
+<span class="font-label-md text-label-md">45%</span>
+</div>
+<div class="flex justify-between items-center bg-surface-container-low p-sm rounded-lg">
+<span class="font-body-sm text-body-sm">United Kingdom</span>
+<span class="font-label-md text-label-md">22%</span>
+</div>
+<div class="flex justify-between items-center bg-surface-container-low p-sm rounded-lg">
+<span class="font-body-sm text-body-sm">Canada</span>
+<span class="font-label-md text-label-md">15%</span>
+</div>
+</div>
+<button class="w-full mt-md text-primary font-label-md text-label-md hover:underline">View All Locations</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer (Hidden on this specific dashboard view to maximize canvas, as per instructions typically dashboards focus on main content, but I will include it subtly if required, skipping for true dashboard feel as requested by "minimize dead ends"). -->
+</main>
+<script>
+        // Simple micro-interaction for bars on load
+        document.addEventListener('DOMContentLoaded', () => {
+            const bars = document.querySelectorAll('.chart-bar');
+            bars.forEach(bar => {
+                const finalHeight = bar.style.height || bar.className.match(/h-\[(\d+)%\]/)[1] + '%';
+                bar.style.height = '0%';
+                setTimeout(() => {
+                    bar.style.height = finalHeight;
+                }, 100);
+            });
+        });
+    </script>
+
+
+</body></html>

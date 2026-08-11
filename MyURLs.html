@@ -1,0 +1,341 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>ShortenIt - My URLs</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">tailwind.config = {darkMode: "class", theme: {extend: {colors: {"surface-variant": "#d2e4f8", error: "#ba1a1a", "on-tertiary": "#ffffff", tertiary: "#004c7a", outline: "#777587", "surface-container-lowest": "#ffffff", "on-surface": "#0b1d2b", "on-tertiary-fixed-variant": "#004a77", "on-primary-fixed": "#001d32", secondary: "#42617c", "on-surface-variant": "#464555", "on-secondary-container": "#45647e", "on-error-container": "#93000a", "primary-container": "#44637f", "error-container": "#ffdad6", "on-primary-fixed-variant": "#2a4965", "surface-container-highest": "#d2e4f8", "surface-tint": "#42617d", "primary-fixed": "#cde5ff", "secondary-container": "#c1e0ff", "surface-container-high": "#d8eafe", background: "#f7f9ff", "on-primary-container": "#c0dfff", surface: "#f7f9ff", "inverse-on-surface": "#e7f2ff", "on-tertiary-container": "#c2deff", "outline-variant": "#c7c4d8", "surface-bright": "#f7f9ff", "tertiary-fixed": "#cfe5ff", "secondary-fixed": "#cce5ff", "on-secondary-fixed-variant": "#2a4a63", "on-background": "#0b1d2b", "on-tertiary-fixed": "#001d33", "surface-container": "#e2efff", "tertiary-container": "#296494", "inverse-surface": "#213241", "primary-fixed-dim": "#aacaea", "surface-dim": "#cadcf0", "on-error": "#ffffff", "inverse-primary": "#aacaea", "on-secondary": "#ffffff", "on-secondary-fixed": "#001e31", primary: "#2b4b66", "secondary-fixed-dim": "#aacae8", "tertiary-fixed-dim": "#98cbff", "surface-container-low": "#edf4ff", "on-primary": "#ffffff"}, borderRadius: {DEFAULT: "0.25rem", lg: "0.5rem", xl: "0.75rem", full: "9999px"}, spacing: {lg: "24px", "margin-desktop": "32px", md: "16px", "margin-mobile": "16px", base: "4px", xs: "4px", "2xl": "48px", sm: "8px", gutter: "24px", xl: "32px"}, fontFamily: {"label-md": ["Inter"], "label-sm": ["Inter"], "body-md": ["Inter"], "headline-sm": ["Inter"], "body-lg": ["Inter"], "body-sm": ["Inter"], code: ["Inter"], "headline-md": ["Inter"], "display-lg": ["Inter"], headline: ["Inter"], display: ["Inter"], body: ["Inter"], label: ["Inter"]}, fontSize: {"label-md": ["14px", {lineHeight: "20px", letterSpacing: "0.01em", fontWeight: "500"}], "label-sm": ["12px", {lineHeight: "16px", fontWeight: "600"}], "body-md": ["16px", {lineHeight: "24px", fontWeight: "400"}], "headline-sm": ["20px", {lineHeight: "28px", fontWeight: "600"}], "body-lg": ["18px", {lineHeight: "28px", fontWeight: "400"}], "body-sm": ["14px", {lineHeight: "20px", fontWeight: "400"}], code: ["14px", {lineHeight: "20px", fontWeight: "400"}], "headline-md": ["24px", {lineHeight: "32px", letterSpacing: "-0.01em", fontWeight: "600"}], "display-lg": ["36px", {lineHeight: "44px", letterSpacing: "-0.02em", fontWeight: "700"}]}}}};</script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen flex">
+<!-- SideNavBar (Desktop) -->
+<nav class="bg-white dark:bg-inverse-surface border-r border-outline-variant dark:border-outline shadow-sm dark:shadow-none docked left-0 h-full w-[280px] hidden md:flex flex-col flex-shrink-0 z-50">
+<div class="flex flex-col h-full py-lg px-md">
+<!-- Header -->
+<div class="mb-lg px-sm">
+<div class="flex items-center gap-md mb-md">
+<div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container font-headline-md">S</div>
+<div>
+<h1 class="font-headline-md text-headline-md font-bold text-primary dark:text-inverse-primary">ShortenIt</h1>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Pro Plan</p>
+</div>
+</div>
+<button class="w-full bg-primary text-on-primary font-label-md text-label-md py-sm px-md rounded-lg hover:brightness-90 transition-all">
+                    Create New Link
+                </button>
+</div>
+<!-- Tabs -->
+<ul class="flex-1 space-y-sm">
+<li class="">
+<a class="flex items-center gap-md px-sm py-sm rounded-lg text-on-surface-variant dark:text-surface-variant hover:text-primary hover:bg-surface-container-low dark:hover:bg-surface-variant transition-colors font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+                        Dashboard
+                    </a>
+</li>
+<li class="">
+<a class="flex items-center gap-md px-sm py-sm rounded-lg text-primary dark:text-inverse-primary font-bold border-r-4 border-primary bg-surface-container-low dark:bg-surface-variant opacity-80 transition-all duration-150 font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined" data-icon="link" data-weight="fill" style="font-variation-settings: &quot;FILL&quot; 1;">link</span>
+                        My URLs
+                    </a>
+</li>
+<li class="">
+<a class="flex items-center gap-md px-sm py-sm rounded-lg text-on-surface-variant dark:text-surface-variant hover:text-primary hover:bg-surface-container-low dark:hover:bg-surface-variant transition-colors font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined" data-icon="bar_chart">bar_chart</span>
+                        Analytics
+                    </a>
+</li>
+<li class="">
+<a class="flex items-center gap-md px-sm py-sm rounded-lg text-on-surface-variant dark:text-surface-variant hover:text-primary hover:bg-surface-container-low dark:hover:bg-surface-variant transition-colors font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+                        Profile
+                    </a>
+</li>
+<li class="">
+
+</li>
+</ul>
+<!-- Footer -->
+<ul class="mt-auto pt-md border-t border-outline-variant">
+<li class="">
+
+</li>
+</ul>
+</div>
+</nav>
+<!-- Main Content Area -->
+<div class="flex-1 flex flex-col min-w-0">
+<!-- TopNavBar -->
+<header class="bg-surface dark:bg-inverse-surface border-b border-outline-variant dark:border-outline docked top-0 w-full z-40 sticky">
+<div class="flex justify-between items-center px-margin-mobile md:px-margin-desktop py-base w-full h-16">
+<!-- Mobile Menu Button & Brand -->
+<div class="flex items-center gap-md md:hidden">
+<button class="text-on-surface-variant p-2 rounded-full hover:bg-surface-variant">
+<span class="material-symbols-outlined" data-icon="menu">menu</span>
+</button>
+<span class="font-headline-md text-headline-md font-bold text-primary">ShortenIt</span>
+</div>
+<!-- Desktop Title -->
+<div class="hidden md:block">
+<h2 class="font-headline-sm text-headline-sm text-primary dark:text-inverse-primary font-bold">My URLs</h2>
+</div>
+<!-- Actions -->
+<div class="flex items-center gap-md">
+<!-- Search (Desktop) -->
+<div class="hidden md:flex relative items-center">
+<span class="material-symbols-outlined absolute left-sm text-outline" data-icon="search">search</span>
+<input class="pl-[32px] pr-md py-sm rounded-full border border-outline-variant bg-surface-container-lowest text-on-surface focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 text-body-sm transition-all w-64" placeholder="Search links..." type="text">
+</div>
+<!-- Search (Mobile Icon) -->
+<button class="md:hidden text-on-surface-variant p-2 rounded-full hover:bg-surface-variant">
+<span class="material-symbols-outlined" data-icon="search">search</span>
+</button>
+<button class="text-on-surface-variant p-2 rounded-full hover:bg-surface-variant transition-colors relative">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+<span class="absolute top-1 right-1 w-2 h-2 bg-error rounded-full"></span>
+</button>
+<div class="w-8 h-8 rounded-full bg-primary-container overflow-hidden border border-outline-variant ml-sm cursor-pointer hover:opacity-90 transition-opacity">
+<img alt="User Profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAqPjESrOzuoVLyR--hZhqfJBKkgvqu7-0EyXLjBH5GBShNcxnVn-2pRIqmq874aOhXrJ6m_Rh_lW7FO7zxoENDjVAd8-1IS9Gp18eZmxxEhg0lSc8b591oJSpCLFfQSm_hbraHMxiu-qRMJjb61sqFdkYs5ezXNizZ13egt21D9VXwICh77AXSvwKnC34OZvPBbby2ixuUlAzo2h2u093_31Pb64UNlX5yU993iqsIiXAe4WoocsC2">
+</div>
+</div>
+</div>
+</header>
+<!-- Page Content -->
+<main class="flex-1 p-margin-mobile md:p-margin-desktop overflow-x-hidden overflow-y-auto">
+<div class="max-w-7xl mx-auto space-y-lg">
+<!-- Filters & Mobile Title -->
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-md">
+<h1 class="font-display-lg text-display-lg md:hidden">My URLs</h1>
+<div class="flex items-center gap-md w-full md:w-auto overflow-x-auto pb-2 md:pb-0 hide-scrollbar">
+<button class="flex items-center gap-xs px-md py-sm bg-primary text-on-primary rounded-full font-label-md text-label-md whitespace-nowrap shadow-sm hover:brightness-90 transition-all">
+<span class="material-symbols-outlined text-[18px]" data-icon="add">add</span>
+                            New Link
+                        </button>
+<button class="flex items-center gap-xs px-md py-sm bg-surface-container-lowest border border-outline-variant text-on-surface rounded-full font-label-md text-label-md whitespace-nowrap hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined text-[18px]" data-icon="filter_list">filter_list</span>
+                            Filter
+                        </button>
+<button class="flex items-center gap-xs px-md py-sm bg-surface-container-lowest border border-outline-variant text-on-surface rounded-full font-label-md text-label-md whitespace-nowrap hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined text-[18px]" data-icon="sort">sort</span>
+                            Sort
+                        </button>
+</div>
+</div>
+<!-- Data Presentation (Table for Desktop, Cards for Mobile) -->
+<div class="bg-surface-container-lowest rounded-xl shadow-sm border border-outline-variant overflow-hidden">
+<!-- Desktop Table View -->
+<div class="hidden md:block overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="border-b border-outline-variant bg-surface-container-low">
+<th class="py-sm px-md font-label-sm text-label-sm text-on-surface-variant font-semibold">Short URL</th>
+<th class="py-sm px-md font-label-sm text-label-sm text-on-surface-variant font-semibold">Original URL</th>
+<th class="py-sm px-md font-label-sm text-label-sm text-on-surface-variant font-semibold text-right">Clicks</th>
+<th class="py-sm px-md font-label-sm text-label-sm text-on-surface-variant font-semibold">Status</th>
+<th class="py-sm px-md font-label-sm text-label-sm text-on-surface-variant font-semibold">Created</th>
+<th class="py-sm px-md font-label-sm text-label-sm text-on-surface-variant font-semibold text-center">Actions</th>
+</tr>
+</thead>
+<tbody class="font-body-sm text-body-sm divide-y divide-outline-variant">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="py-md px-md">
+<div class="flex items-center gap-sm">
+<span class="text-primary font-code text-code">sho.rt/campaign-a</span>
+<button class="text-outline hover:text-primary opacity-0 group-hover:opacity-100 transition-opacity" title="Copy">
+<span class="material-symbols-outlined text-[16px]" data-icon="content_copy">content_copy</span>
+</button>
+</div>
+</td>
+<td class="py-md px-md text-on-surface-variant truncate max-w-[200px]" title="https://example.com/marketing/q1/campaign-alpha-long-url">
+                                        https://example.com/marketing/q1/...
+                                    </td>
+<td class="py-md px-md text-right font-medium text-on-surface">1,245</td>
+<td class="py-md px-md">
+<span class="inline-flex items-center px-2 py-1 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm">
+                                            Active
+                                        </span>
+</td>
+<td class="py-md px-md text-on-surface-variant">Oct 12, 2023</td>
+<td class="py-md px-md">
+<div class="flex items-center justify-center gap-xs">
+<button class="p-1 rounded-md text-outline hover:text-primary hover:bg-surface-variant transition-colors" title="QR Code">
+<span class="material-symbols-outlined text-[18px]" data-icon="qr_code">qr_code</span>
+</button>
+<button class="p-1 rounded-md text-outline hover:text-primary hover:bg-surface-variant transition-colors" title="Analytics">
+<span class="material-symbols-outlined text-[18px]" data-icon="bar_chart">bar_chart</span>
+</button>
+<button class="p-1 rounded-md text-outline hover:text-error hover:bg-error-container transition-colors" title="Delete">
+<span class="material-symbols-outlined text-[18px]" data-icon="delete">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="py-md px-md">
+<div class="flex items-center gap-sm">
+<span class="text-primary font-code text-code">sho.rt/promo-20</span>
+<button class="text-outline hover:text-primary opacity-0 group-hover:opacity-100 transition-opacity" title="Copy">
+<span class="material-symbols-outlined text-[16px]" data-icon="content_copy">content_copy</span>
+</button>
+</div>
+</td>
+<td class="py-md px-md text-on-surface-variant truncate max-w-[200px]" title="https://example.com/store/promo20">
+                                        https://example.com/store/promo20
+                                    </td>
+<td class="py-md px-md text-right font-medium text-on-surface">8,902</td>
+<td class="py-md px-md">
+<span class="inline-flex items-center px-2 py-1 rounded-full bg-error-container text-on-error-container font-label-sm text-label-sm">
+                                            Expired
+                                        </span>
+</td>
+<td class="py-md px-md text-on-surface-variant">Sep 01, 2023</td>
+<td class="py-md px-md">
+<div class="flex items-center justify-center gap-xs">
+<button class="p-1 rounded-md text-outline hover:text-primary hover:bg-surface-variant transition-colors" title="QR Code">
+<span class="material-symbols-outlined text-[18px]" data-icon="qr_code">qr_code</span>
+</button>
+<button class="p-1 rounded-md text-outline hover:text-primary hover:bg-surface-variant transition-colors" title="Analytics">
+<span class="material-symbols-outlined text-[18px]" data-icon="bar_chart">bar_chart</span>
+</button>
+<button class="p-1 rounded-md text-outline hover:text-error hover:bg-error-container transition-colors" title="Delete">
+<span class="material-symbols-outlined text-[18px]" data-icon="delete">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="py-md px-md">
+<div class="flex items-center gap-sm">
+<span class="text-primary font-code text-code">sho.rt/dev-docs</span>
+<button class="text-outline hover:text-primary opacity-0 group-hover:opacity-100 transition-opacity" title="Copy">
+<span class="material-symbols-outlined text-[16px]" data-icon="content_copy">content_copy</span>
+</button>
+</div>
+</td>
+<td class="py-md px-md text-on-surface-variant truncate max-w-[200px]" title="https://api.example.com/v2/documentation/endpoints">
+                                        https://api.example.com/v2/docume...
+                                    </td>
+<td class="py-md px-md text-right font-medium text-on-surface">342</td>
+<td class="py-md px-md">
+<span class="inline-flex items-center px-2 py-1 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm">
+                                            Active
+                                        </span>
+</td>
+<td class="py-md px-md text-on-surface-variant">Nov 05, 2023</td>
+<td class="py-md px-md">
+<div class="flex items-center justify-center gap-xs">
+<button class="p-1 rounded-md text-outline hover:text-primary hover:bg-surface-variant transition-colors" title="QR Code">
+<span class="material-symbols-outlined text-[18px]" data-icon="qr_code">qr_code</span>
+</button>
+<button class="p-1 rounded-md text-outline hover:text-primary hover:bg-surface-variant transition-colors" title="Analytics">
+<span class="material-symbols-outlined text-[18px]" data-icon="bar_chart">bar_chart</span>
+</button>
+<button class="p-1 rounded-md text-outline hover:text-error hover:bg-error-container transition-colors" title="Delete">
+<span class="material-symbols-outlined text-[18px]" data-icon="delete">delete</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Mobile Card View -->
+<div class="md:hidden flex flex-col divide-y divide-outline-variant">
+<!-- Card 1 -->
+<div class="p-md hover:bg-surface-container-low transition-colors">
+<div class="flex justify-between items-start mb-sm">
+<div class="flex flex-col gap-xs">
+<div class="flex items-center gap-sm">
+<span class="text-primary font-code text-code font-medium">sho.rt/campaign-a</span>
+<button class="text-outline" title="Copy">
+<span class="material-symbols-outlined text-[16px]" data-icon="content_copy">content_copy</span>
+</button>
+</div>
+<span class="text-on-surface-variant font-body-sm text-body-sm truncate max-w-[250px]">
+                                        https://example.com/marketing/q1/...
+                                    </span>
+</div>
+<span class="inline-flex items-center px-2 py-1 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm">
+                                    Active
+                                </span>
+</div>
+<div class="flex justify-between items-end mt-md">
+<div class="flex flex-col gap-xs">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Clicks: <span class="text-on-surface font-medium">1,245</span></span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Created: Oct 12, 2023</span>
+</div>
+<div class="flex gap-sm">
+<button class="p-2 rounded-full bg-surface-variant text-on-surface-variant" title="QR Code">
+<span class="material-symbols-outlined text-[18px]" data-icon="qr_code">qr_code</span>
+</button>
+<button class="p-2 rounded-full bg-surface-variant text-on-surface-variant" title="Analytics">
+<span class="material-symbols-outlined text-[18px]" data-icon="bar_chart">bar_chart</span>
+</button>
+<button class="p-2 rounded-full bg-error-container text-on-error-container" title="Delete">
+<span class="material-symbols-outlined text-[18px]" data-icon="delete">delete</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="p-md hover:bg-surface-container-low transition-colors">
+<div class="flex justify-between items-start mb-sm">
+<div class="flex flex-col gap-xs">
+<div class="flex items-center gap-sm">
+<span class="text-primary font-code text-code font-medium">sho.rt/promo-20</span>
+<button class="text-outline" title="Copy">
+<span class="material-symbols-outlined text-[16px]" data-icon="content_copy">content_copy</span>
+</button>
+</div>
+<span class="text-on-surface-variant font-body-sm text-body-sm truncate max-w-[250px]">
+                                        https://example.com/store/promo20
+                                    </span>
+</div>
+<span class="inline-flex items-center px-2 py-1 rounded-full bg-error-container text-on-error-container font-label-sm text-label-sm">
+                                    Expired
+                                </span>
+</div>
+<div class="flex justify-between items-end mt-md">
+<div class="flex flex-col gap-xs">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Clicks: <span class="text-on-surface font-medium">8,902</span></span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Created: Sep 01, 2023</span>
+</div>
+<div class="flex gap-sm">
+<button class="p-2 rounded-full bg-surface-variant text-on-surface-variant" title="QR Code">
+<span class="material-symbols-outlined text-[18px]" data-icon="qr_code">qr_code</span>
+</button>
+<button class="p-2 rounded-full bg-surface-variant text-on-surface-variant" title="Analytics">
+<span class="material-symbols-outlined text-[18px]" data-icon="bar_chart">bar_chart</span>
+</button>
+<button class="p-2 rounded-full bg-error-container text-on-error-container" title="Delete">
+<span class="material-symbols-outlined text-[18px]" data-icon="delete">delete</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Pagination -->
+<div class="flex justify-between items-center py-md border-t border-outline-variant mt-lg">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Showing 1 to 10 of 42 entries</span>
+<div class="flex gap-sm">
+<button class="px-md py-sm border border-outline-variant rounded-md text-on-surface-variant bg-surface-container-lowest hover:bg-surface-container-low disabled:opacity-50 font-label-sm text-label-sm" disabled="">Previous</button>
+<button class="px-md py-sm border border-outline-variant rounded-md text-on-surface-variant bg-surface-container-lowest hover:bg-surface-container-low font-label-sm text-label-sm">Next</button>
+</div>
+</div>
+</div>
+</main>
+</div>
+
+
+
+
+</body></html>

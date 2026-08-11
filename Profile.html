@@ -1,0 +1,200 @@
+<!DOCTYPE html><html class="h-full" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Profile - ShortenIt</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">tailwind.config = {darkMode: "class", theme: {extend: {colors: {"surface-variant": "#d2e4f8", error: "#ba1a1a", "on-tertiary": "#ffffff", tertiary: "#004c7a", outline: "#777587", "surface-container-lowest": "#ffffff", "on-surface": "#0b1d2b", "on-tertiary-fixed-variant": "#004a77", "on-primary-fixed": "#001d32", secondary: "#42617c", "on-surface-variant": "#464555", "on-secondary-container": "#45647e", "on-error-container": "#93000a", "primary-container": "#44637f", "error-container": "#ffdad6", "on-primary-fixed-variant": "#2a4965", "surface-container-highest": "#d2e4f8", "surface-tint": "#42617d", "primary-fixed": "#cde5ff", "secondary-container": "#c1e0ff", "surface-container-high": "#d8eafe", background: "#f7f9ff", "on-primary-container": "#c0dfff", surface: "#f7f9ff", "inverse-on-surface": "#e7f2ff", "on-tertiary-container": "#c2deff", "outline-variant": "#c7c4d8", "surface-bright": "#f7f9ff", "tertiary-fixed": "#cfe5ff", "secondary-fixed": "#cce5ff", "on-secondary-fixed-variant": "#2a4a63", "on-background": "#0b1d2b", "on-tertiary-fixed": "#001d33", "surface-container": "#e2efff", "tertiary-container": "#296494", "inverse-surface": "#213241", "primary-fixed-dim": "#aacaea", "surface-dim": "#cadcf0", "on-error": "#ffffff", "inverse-primary": "#aacaea", "on-secondary": "#ffffff", "on-secondary-fixed": "#001e31", primary: "#2b4b66", "secondary-fixed-dim": "#aacae8", "tertiary-fixed-dim": "#98cbff", "surface-container-low": "#edf4ff", "on-primary": "#ffffff"}, borderRadius: {DEFAULT: "0.25rem", lg: "0.5rem", xl: "0.75rem", full: "9999px"}, spacing: {lg: "24px", "margin-desktop": "32px", md: "16px", "margin-mobile": "16px", base: "4px", xs: "4px", "2xl": "48px", sm: "8px", gutter: "24px", xl: "32px"}, fontFamily: {"label-md": ["Inter"], "label-sm": ["Inter"], "body-md": ["Inter"], "headline-sm": ["Inter"], "body-lg": ["Inter"], "body-sm": ["Inter"], code: ["Inter"], "headline-md": ["Inter"], "display-lg": ["Inter"], headline: ["Inter"], display: ["Inter"], body: ["Inter"], label: ["Inter"]}, fontSize: {"label-md": ["14px", {lineHeight: "20px", letterSpacing: "0.01em", fontWeight: "500"}], "label-sm": ["12px", {lineHeight: "16px", fontWeight: "600"}], "body-md": ["16px", {lineHeight: "24px", fontWeight: "400"}], "headline-sm": ["20px", {lineHeight: "28px", fontWeight: "600"}], "body-lg": ["18px", {lineHeight: "28px", fontWeight: "400"}], "body-sm": ["14px", {lineHeight: "20px", fontWeight: "400"}], code: ["14px", {lineHeight: "20px", fontWeight: "400"}], "headline-md": ["24px", {lineHeight: "32px", letterSpacing: "-0.01em", fontWeight: "600"}], "display-lg": ["36px", {lineHeight: "44px", letterSpacing: "-0.02em", fontWeight: "700"}]}}}};</script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background h-full font-body-md antialiased flex flex-col md:flex-row">
+<!-- TopNavBar (Mobile) -->
+<header class="bg-surface dark:bg-inverse-surface border-b border-outline-variant dark:border-outline docked top-0 w-full flex justify-between items-center px-margin-mobile md:px-margin-desktop py-base w-full sticky top-0 z-40 md:hidden shadow-sm dark:shadow-none h-16">
+<div class="flex items-center gap-2">
+<span class="font-headline-md text-headline-md font-bold text-primary dark:text-inverse-primary">ShortenIt</span>
+</div>
+<div class="flex items-center gap-4">
+<button class="text-on-surface-variant hover:bg-surface-variant rounded-full p-2 transition-colors active:scale-95 duration-100 flex items-center justify-center h-10 w-10">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<div class="h-8 w-8 rounded-full overflow-hidden border border-outline-variant bg-surface-variant flex-shrink-0">
+<img alt="User Profile" class="h-full w-full object-cover" data-alt="A professional headshot of a person looking directly at the camera. The background is a clean, minimal office environment with soft natural lighting. The mood is approachable and confident. The aesthetic aligns with a modern tech company." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCTJFU-fjGVdK0KqsUBljZEA7cSW9qXbhMgsI89hzF9k9RbdskG18BlrfsAyiplrakBMEv3Pn97SKPWqPBxB8jLJgf3JzULj4bsVVdKsFXVnU5LyHq3VNoRsNWZ4biUMjDCMzMh33i5n3TMqLyNaOn1Mj7Rx-vDXE1wfyDnDby1zpylhciyJ1WlGzQ9dIGjEqVJPPYyJWcbfM50JLxtWkuEPGIyT3YaH2BT0e2zfOrR2Nc2ciH0pnH-">
+</div>
+</div>
+</header>
+<!-- SideNavBar (Desktop) -->
+<nav class="bg-white dark:bg-inverse-surface docked left-0 h-full w-[280px] hidden md:flex flex-col border-r border-outline-variant dark:border-outline shadow-sm dark:shadow-none z-30 sticky top-0">
+<div class="flex flex-col h-full py-lg px-md gap-lg">
+<!-- Header -->
+<div class="flex items-center gap-sm px-sm pt-sm">
+<div class="h-10 w-10 rounded-full overflow-hidden border border-outline-variant bg-surface-variant flex-shrink-0">
+<img alt="User Avatar" class="h-full w-full object-cover" data-alt="A small, stylized avatar of a person, simple and clean, suitable for a dashboard side navigation header. The style is modern minimalist with a subtle pop of color against a light background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAfZhskdyMEcvccLCuAXcoNe6RF0IlYiaJ4DBWLCSMEmO2QUbeUya8OCkNqa2g9NT6YLK1fbzf0qyTLtWQTTb0afSXoe1SFprQ5K4JCjhM9wrBkCHy_QuDkb3LrkYUvLWiL9-mNEOgxcaK1RSi1Sugci-WdwZK22wckqu4npgvHffbiEDY4fdKePCtpxbmi82yyYdiH94DEEJKYTSbQm3tKcaJyUZ-2k-ev0qE5FLrNaXNAV2L6ciO3">
+</div>
+<div>
+<div class="font-headline-md text-headline-md font-bold text-primary dark:text-inverse-primary">ShortenIt</div>
+<div class="font-label-sm text-label-sm text-on-surface-variant">Pro Plan</div>
+</div>
+</div>
+<!-- CTA -->
+<button class="bg-primary hover:bg-primary-container text-on-primary font-label-md text-label-md py-3 px-4 rounded-lg w-full flex items-center justify-center gap-2 transition-colors shadow-sm">
+<span class="material-symbols-outlined" style="font-size: 20px;">add</span>
+                Create New Link
+            </button>
+<!-- Navigation Links -->
+<div class="flex-1 flex flex-col gap-1 overflow-y-auto">
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-low dark:hover:bg-surface-variant transition-colors font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+                    Dashboard
+                </a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-low dark:hover:bg-surface-variant transition-colors font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined" data-icon="link">link</span>
+                    My URLs
+                </a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-low dark:hover:bg-surface-variant transition-colors font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined" data-icon="bar_chart">bar_chart</span>
+                    Analytics
+                </a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-primary dark:text-inverse-primary font-bold border-r-4 border-primary bg-surface-container-low opacity-80 transition-all duration-150 font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+                    Profile
+                </a>
+
+</div>
+<!-- Footer Navigation -->
+<div class="mt-auto pt-4 border-t border-outline-variant">
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-low dark:hover:bg-surface-variant transition-colors font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+                    Logout
+                </a>
+</div>
+</div>
+</nav>
+<!-- Main Content -->
+<main class="flex-1 overflow-y-auto w-full relative">
+<div class="max-w-7xl mx-auto px-margin-mobile md:px-margin-desktop py-lg md:py-2xl flex flex-col gap-lg">
+<!-- Page Header -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div>
+<h1 class="font-display-lg text-display-lg text-on-surface mb-2">Profile</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">Manage your account details and preferences.</p>
+</div>
+</div>
+<!-- Grid Layout for Content -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-lg">
+<!-- Left Column: Profile Card & Actions -->
+<div class="lg:col-span-1 flex flex-col gap-lg">
+<!-- Profile Summary Card -->
+<div class="bg-surface-container-lowest rounded-xl border border-outline-variant shadow-sm p-lg flex flex-col items-center text-center relative overflow-hidden">
+<div class="h-24 w-24 rounded-full overflow-hidden border-4 border-white shadow-sm mb-4 bg-surface-variant z-10">
+<img alt="John Doe Avatar" class="h-full w-full object-cover" data-alt="A clear, bright, close-up portrait of a person smiling softly. The lighting is flattering and soft, highlighting the face. The background is a slightly blurred, light neutral color to maintain focus on the subject. Minimalist, professional aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDPSel0uqRltfYEjxd_w2am7ePLoebCHEN6TNQkWF6Wlr7Q2ZU3ZXKPUhsM4YuAHhvgGuJ745Wp_Gp3E3jwhYAiQgtVvv04r7_q9bric7u9Ccxv8up0YVeQx4ijATUj2WTtL_5xZmiJ6JLPv0xNYexWtgNARerj3KAEWx-jdto0tng_msz3jBhuBKm5x7Psv8cHIhGbh0Yy7mjfz3XmO4XLpD0hlQgIvua1yXNk7LRBV84lQ6eNQWCK">
+</div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">John Doe</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-4">john.doe@example.com</p>
+<div class="w-full flex items-center justify-between py-3 border-t border-outline-variant mt-2">
+<span class="font-label-md text-label-md text-on-surface-variant">Member since</span>
+<span class="font-body-sm text-body-sm text-on-surface font-medium">Oct 2023</span>
+</div>
+<!-- Actions -->
+<div class="w-full flex flex-col gap-3 mt-4">
+<button class="w-full bg-primary hover:bg-primary-container text-on-primary font-label-md text-label-md py-2.5 px-4 rounded-lg transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined" style="font-size: 18px;">edit</span>
+                                Edit Profile
+                            </button>
+<button class="w-full bg-surface-container hover:bg-surface-container-high text-error font-label-md text-label-md py-2.5 px-4 rounded-lg transition-colors border border-error-container flex items-center justify-center gap-2">
+<span class="material-symbols-outlined" style="font-size: 18px;">logout</span>
+                                Logout
+                            </button>
+</div>
+</div>
+</div>
+<!-- Right Column: Stats & Settings -->
+<div class="lg:col-span-2 flex flex-col gap-lg">
+<!-- Stats Bento Grid -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+<div class="bg-surface-container-lowest rounded-xl border border-outline-variant shadow-sm p-md flex items-center gap-4 transition-shadow hover:shadow-md">
+<div class="h-12 w-12 rounded-full bg-surface-container flex items-center justify-center text-primary flex-shrink-0">
+<span class="material-symbols-outlined">link</span>
+</div>
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Total URLs Created</p>
+<p class="font-headline-md text-headline-md text-on-surface font-bold">1,248</p>
+</div>
+</div>
+<div class="bg-surface-container-lowest rounded-xl border border-outline-variant shadow-sm p-md flex items-center gap-4 transition-shadow hover:shadow-md">
+<div class="h-12 w-12 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container flex-shrink-0">
+<span class="material-symbols-outlined">ads_click</span>
+</div>
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Total Clicks</p>
+<p class="font-headline-md text-headline-md text-on-surface font-bold">45.2k</p>
+</div>
+</div>
+</div>
+<!-- Account Preferences List -->
+<div class="bg-surface-container-lowest rounded-xl border border-outline-variant shadow-sm overflow-hidden">
+<div class="px-lg py-md border-b border-outline-variant bg-surface-container-low">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Account Preferences</h3>
+</div>
+<ul class="flex flex-col divide-y divide-outline-variant">
+<li class="px-lg py-4 flex items-center justify-between hover:bg-surface-container-lowest/50 transition-colors cursor-pointer group">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface group-hover:text-primary transition-colors">Email Notifications</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Receive daily summary reports.</span>
+</div>
+<div class="relative inline-block w-12 mr-2 align-middle select-none transition duration-200 ease-in">
+<input checked="" class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 border-surface-variant appearance-none cursor-pointer transition-transform duration-200 ease-in-out checked:translate-x-6 checked:border-primary" id="email-toggle" name="toggle" type="checkbox">
+<label class="toggle-label block overflow-hidden h-6 rounded-full bg-surface-variant cursor-pointer transition-colors duration-200 ease-in-out" for="email-toggle"></label>
+</div>
+<style>
+                                    /* Quick inline style for the toggle hack to work visually without external JS for simplicity here */
+                                    .toggle-checkbox:checked + .toggle-label {
+                                        background-color: theme('colors.primary');
+                                    }
+                                </style>
+</li>
+<li class="px-lg py-4 flex items-center justify-between hover:bg-surface-container-lowest/50 transition-colors cursor-pointer group">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface group-hover:text-primary transition-colors">Two-Factor Authentication (2FA)</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Secure your account with an extra layer of security.</span>
+</div>
+<button class="font-label-md text-label-md text-primary hover:underline">Enable</button>
+</li>
+<li class="px-lg py-4 flex items-center justify-between hover:bg-surface-container-lowest/50 transition-colors cursor-pointer group">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface group-hover:text-primary transition-colors">Theme Preference</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Choose your visual aesthetic.</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="font-body-sm text-body-sm text-on-surface">Light Mode</span>
+<span class="material-symbols-outlined text-on-surface-variant" style="font-size: 20px;">chevron_right</span>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer Component -->
+<footer class="bg-background dark:bg-background border-t border-outline-variant full-width bottom-0 mt-auto">
+<div class="flex flex-col md:flex-row justify-between items-center py-xl px-margin-desktop max-w-7xl mx-auto gap-4">
+<div class="font-label-md text-label-md font-bold text-on-surface">
+                    © 2024 ShortenIt SaaS. All rights reserved.
+                </div>
+<div class="flex gap-lg">
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Terms of Service</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="#">API Docs</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Support</a>
+</div>
+</div>
+</footer>
+</main>
+
+
+</body></html>

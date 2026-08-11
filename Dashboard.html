@@ -1,0 +1,176 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>ShortenIt - Dashboard</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">tailwind.config = {darkMode: "class", theme: {extend: {colors: {"surface-variant": "#d2e4f8", error: "#ba1a1a", "on-tertiary": "#ffffff", tertiary: "#004c7a", outline: "#777587", "surface-container-lowest": "#ffffff", "on-surface": "#0b1d2b", "on-tertiary-fixed-variant": "#004a77", "on-primary-fixed": "#001d32", secondary: "#42617c", "on-surface-variant": "#464555", "on-secondary-container": "#45647e", "on-error-container": "#93000a", "primary-container": "#44637f", "error-container": "#ffdad6", "on-primary-fixed-variant": "#2a4965", "surface-container-highest": "#d2e4f8", "surface-tint": "#42617d", "primary-fixed": "#cde5ff", "secondary-container": "#c1e0ff", "surface-container-high": "#d8eafe", background: "#f7f9ff", "on-primary-container": "#c0dfff", surface: "#f7f9ff", "inverse-on-surface": "#e7f2ff", "on-tertiary-container": "#c2deff", "outline-variant": "#c7c4d8", "surface-bright": "#f7f9ff", "tertiary-fixed": "#cfe5ff", "secondary-fixed": "#cce5ff", "on-secondary-fixed-variant": "#2a4a63", "on-background": "#0b1d2b", "on-tertiary-fixed": "#001d33", "surface-container": "#e2efff", "tertiary-container": "#296494", "inverse-surface": "#213241", "primary-fixed-dim": "#aacaea", "surface-dim": "#cadcf0", "on-error": "#ffffff", "inverse-primary": "#aacaea", "on-secondary": "#ffffff", "on-secondary-fixed": "#001e31", primary: "#2b4b66", "secondary-fixed-dim": "#aacae8", "tertiary-fixed-dim": "#98cbff", "surface-container-low": "#edf4ff", "on-primary": "#ffffff"}, borderRadius: {DEFAULT: "0.25rem", lg: "0.5rem", xl: "0.75rem", full: "9999px"}, spacing: {lg: "24px", "margin-desktop": "32px", md: "16px", "margin-mobile": "16px", base: "4px", xs: "4px", "2xl": "48px", sm: "8px", gutter: "24px", xl: "32px"}, fontFamily: {"label-md": ["Inter"], "label-sm": ["Inter"], "body-md": ["Inter"], "headline-sm": ["Inter"], "body-lg": ["Inter"], "body-sm": ["Inter"], code: ["Inter"], "headline-md": ["Inter"], "display-lg": ["Inter"], headline: ["Inter"], display: ["Inter"], body: ["Inter"], label: ["Inter"]}, fontSize: {"label-md": ["14px", {lineHeight: "20px", letterSpacing: "0.01em", fontWeight: "500"}], "label-sm": ["12px", {lineHeight: "16px", fontWeight: "600"}], "body-md": ["16px", {lineHeight: "24px", fontWeight: "400"}], "headline-sm": ["20px", {lineHeight: "28px", fontWeight: "600"}], "body-lg": ["18px", {lineHeight: "28px", fontWeight: "400"}], "body-sm": ["14px", {lineHeight: "20px", fontWeight: "400"}], code: ["14px", {lineHeight: "20px", fontWeight: "400"}], "headline-md": ["24px", {lineHeight: "32px", letterSpacing: "-0.01em", fontWeight: "600"}], "display-lg": ["36px", {lineHeight: "44px", letterSpacing: "-0.02em", fontWeight: "700"}]}}}};</script>
+<style>
+        body { background-color: theme('colors.background'); color: theme('colors.on-background'); font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="flex h-screen overflow-hidden">
+<!-- SideNavBar -->
+<nav class="bg-surface dark:bg-inverse-surface border-r border-outline-variant dark:border-outline shadow-sm dark:shadow-none docked left-0 h-full w-[280px] hidden md:flex flex-col py-lg px-md z-50 flex-shrink-0">
+<div class="mb-xl">
+<h1 class="font-headline-md text-headline-md font-bold text-primary dark:text-inverse-primary">ShortenIt</h1>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Pro Plan</span>
+</div>
+<button class="w-full bg-primary text-on-primary font-label-md text-label-md py-sm px-md rounded-lg mb-lg hover:bg-primary/90 transition-colors flex items-center justify-center gap-sm">
+<span class="material-symbols-outlined" style="font-variation-settings: &quot;FILL&quot; 1;">add</span>
+            Create New Link
+        </button>
+<ul class="flex flex-col gap-sm flex-1">
+<li class="">
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-primary dark:text-inverse-primary font-bold border-r-4 border-primary bg-surface-container-low transition-all duration-150" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: &quot;FILL&quot; 1;">dashboard</span>
+<span class="font-label-md text-label-md">Dashboard</span>
+</a>
+</li>
+<li class="">
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant dark:text-surface-variant hover:text-primary hover:bg-surface-container-low dark:hover:bg-surface-variant transition-colors opacity-80 transition-all duration-150" href="#">
+<span class="material-symbols-outlined">link</span>
+<span class="font-label-md text-label-md">My URLs</span>
+</a>
+</li>
+<li class="">
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant dark:text-surface-variant hover:text-primary hover:bg-surface-container-low dark:hover:bg-surface-variant transition-colors opacity-80 transition-all duration-150" href="#">
+<span class="material-symbols-outlined">bar_chart</span>
+<span class="font-label-md text-label-md">Analytics</span>
+</a>
+</li>
+<li class="">
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant dark:text-surface-variant hover:text-primary hover:bg-surface-container-low dark:hover:bg-surface-variant transition-colors opacity-80 transition-all duration-150" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-md text-label-md">Profile</span>
+</a>
+</li>
+<li class="">
+
+</li>
+</ul>
+<div class="mt-auto pt-lg border-t border-outline-variant">
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant dark:text-surface-variant hover:text-error hover:bg-error-container transition-colors opacity-80 transition-all duration-150" href="#">
+<span class="material-symbols-outlined">logout</span>
+<span class="font-label-md text-label-md">Logout</span>
+</a>
+</div>
+</nav>
+<!-- Main Content Area -->
+<div class="flex-1 flex flex-col h-full overflow-hidden">
+<!-- TopNavBar -->
+<header class="bg-surface dark:bg-inverse-surface border-b border-outline-variant dark:border-outline flex justify-between items-center px-margin-mobile md:px-margin-desktop py-base w-full sticky top-0 z-40 flex-shrink-0 min-h-[64px]">
+<div class="flex items-center gap-md">
+<h1 class="font-headline-md text-headline-md font-bold text-primary md:hidden">ShortenIt</h1>
+<h2 class="font-headline-sm text-headline-sm text-primary dark:text-inverse-primary hidden md:block font-bold">Dashboard</h2>
+</div>
+<div class="flex-1 max-w-md mx-xl hidden md:block">
+<div class="relative w-full">
+<span class="material-symbols-outlined absolute left-sm top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="w-full pl-lg pr-sm py-sm rounded-full border border-outline-variant bg-surface-container-lowest focus:ring-2 focus:ring-primary focus:border-primary font-body-sm text-body-sm text-on-surface outline-none transition-all" placeholder="Search URLs..." type="text">
+</div>
+</div>
+<div class="flex items-center gap-md">
+<button aria-label="Notifications" class="text-on-surface-variant hover:bg-surface-variant rounded-full p-2 transition-colors relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-1 right-1 w-2 h-2 bg-error rounded-full"></span>
+</button>
+<button class="w-8 h-8 rounded-full overflow-hidden border border-outline-variant hover:ring-2 hover:ring-primary transition-all">
+<img alt="User Profile" class="w-full h-full object-cover" data-alt="A professional headshot of a person looking at the camera, neutral lighting, modern corporate aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDJ19qSfgJck8mjMCZJxoACMQG_vi7001hYrkibGpo08dlrKVr6l5341kFcW_99weOW-Ce6jQ7CCb5pwMLFdZVjptS5yqMDYVmsUR_K5zQaPkNOgn6sHf6-3WL64BtbKggSzhBCMg0jsPM9glad4HPpv-PXSgIIMWZlzhRphkHGRpP0nbjwViN6om71_bT-BkMGIVBNwhleFqwEx5Jh0MATqPkKol1g4jwPuCT40In6uXY9La0fR3X0">
+</button>
+</div>
+</header>
+<!-- Scrollable Content -->
+<main class="flex-1 overflow-y-auto p-margin-mobile md:p-margin-desktop">
+<div class="max-w-7xl mx-auto flex flex-col gap-xl">
+<!-- Shorten a URL Card (Hero Action) -->
+<section class="bg-surface-container-lowest rounded-xl shadow-sm border border-outline-variant p-lg">
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-md font-bold">Shorten a URL</h3>
+<div class="flex flex-col md:flex-row gap-md items-end">
+<div class="flex-1 w-full">
+<label class="block font-label-sm text-label-sm text-on-surface-variant mb-xs" for="longUrl">Long URL</label>
+<input class="w-full px-md py-sm rounded-lg border border-outline-variant bg-surface-container-lowest focus:ring-2 focus:ring-primary focus:border-primary font-body-md text-body-md text-on-surface outline-none transition-all" id="longUrl" placeholder="https://example.com/very-long-url-that-needs-shortening" type="url">
+</div>
+<div class="w-full md:w-48">
+<label class="block font-label-sm text-label-sm text-on-surface-variant mb-xs" for="expiration">Expiration</label>
+<select class="w-full px-md py-sm rounded-lg border border-outline-variant bg-surface-container-lowest focus:ring-2 focus:ring-primary focus:border-primary font-body-md text-body-md text-on-surface outline-none transition-all appearance-none cursor-pointer" id="expiration">
+<option value="never">Never</option>
+<option value="1day">1 Day</option>
+<option value="7days">7 Days</option>
+<option value="30days">30 Days</option>
+<option value="custom">Custom...</option>
+</select>
+</div>
+<button class="w-full md:w-auto bg-primary text-on-primary font-label-md text-label-md py-sm px-xl rounded-lg hover:bg-primary/90 transition-colors h-[42px] flex items-center justify-center whitespace-nowrap">
+                            Shorten URL
+                        </button>
+</div>
+</section>
+<!-- Statistics Bento Grid -->
+<section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-md">
+<!-- Total URLs -->
+<div class="bg-surface-container-lowest rounded-xl shadow-sm border border-outline-variant p-md flex flex-col justify-between hover:shadow-md transition-shadow relative overflow-hidden group">
+<div class="absolute -right-4 -top-4 w-24 h-24 bg-primary/5 rounded-full group-hover:scale-110 transition-transform"></div>
+<div class="flex items-center gap-sm text-on-surface-variant mb-sm relative z-10">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: &quot;FILL&quot; 1;">link</span>
+<span class="font-label-md text-label-md font-semibold">Total URLs</span>
+</div>
+<div class="font-display-lg text-display-lg text-on-surface relative z-10">1,240</div>
+</div>
+<!-- Total Clicks -->
+<div class="bg-surface-container-lowest rounded-xl shadow-sm border border-outline-variant p-md flex flex-col justify-between hover:shadow-md transition-shadow relative overflow-hidden group">
+<div class="absolute -right-4 -top-4 w-24 h-24 bg-secondary/5 rounded-full group-hover:scale-110 transition-transform"></div>
+<div class="flex items-center gap-sm text-on-surface-variant mb-sm relative z-10">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: &quot;FILL&quot; 1;">ads_click</span>
+<span class="font-label-md text-label-md font-semibold">Total Clicks</span>
+</div>
+<div class="font-display-lg text-display-lg text-on-surface relative z-10">45.2k</div>
+</div>
+<!-- Active URLs -->
+<div class="bg-surface-container-lowest rounded-xl shadow-sm border border-outline-variant p-md flex flex-col justify-between hover:shadow-md transition-shadow relative overflow-hidden group">
+<div class="absolute -right-4 -top-4 w-24 h-24 bg-primary-container/20 rounded-full group-hover:scale-110 transition-transform"></div>
+<div class="flex items-center gap-sm text-on-surface-variant mb-sm relative z-10">
+<span class="material-symbols-outlined text-primary-container" style="font-variation-settings: &quot;FILL&quot; 1;">check_circle</span>
+<span class="font-label-md text-label-md font-semibold">Active URLs</span>
+</div>
+<div class="font-display-lg text-display-lg text-on-surface relative z-10">842</div>
+</div>
+<!-- Expired URLs -->
+<div class="bg-surface-container-lowest rounded-xl shadow-sm border border-outline-variant p-md flex flex-col justify-between hover:shadow-md transition-shadow relative overflow-hidden group">
+<div class="absolute -right-4 -top-4 w-24 h-24 bg-error-container/50 rounded-full group-hover:scale-110 transition-transform"></div>
+<div class="flex items-center gap-sm text-on-surface-variant mb-sm relative z-10">
+<span class="material-symbols-outlined text-error" style="font-variation-settings: &quot;FILL&quot; 1;">cancel</span>
+<span class="font-label-md text-label-md font-semibold">Expired URLs</span>
+</div>
+<div class="font-display-lg text-display-lg text-on-surface relative z-10">398</div>
+</div>
+</section>
+<!-- Recent Activity Placeholder (To make dashboard feel complete) -->
+<section class="bg-surface-container-lowest rounded-xl shadow-sm border border-outline-variant p-lg flex-1">
+<div class="flex justify-between items-center mb-md">
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">Recent Activity</h3>
+<button class="text-primary font-label-md text-label-md hover:underline">View All</button>
+</div>
+<div class="text-center py-xl text-on-surface-variant font-body-md text-body-md border-2 border-dashed border-outline-variant rounded-lg bg-surface-container-low">
+<span class="material-symbols-outlined text-4xl mb-sm block opacity-50">analytics</span>
+                         Select a URL from 'My URLs' to see detailed activity here, or shorten a new link to get started.
+                     </div>
+</section>
+</div>
+<!-- Footer (from JSON) -->
+<footer class="bg-background dark:bg-background border-t border-outline-variant flex flex-col md:flex-row justify-between items-center py-xl mt-xl max-w-7xl mx-auto text-on-surface-variant">
+<p class="font-body-sm text-body-sm mb-md md:mb-0">© 2024 ShortenIt SaaS. All rights reserved.</p>
+<div class="flex gap-lg">
+<a class="font-body-sm text-body-sm hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="font-body-sm text-body-sm hover:text-primary transition-colors" href="#">Terms of Service</a>
+<a class="font-body-sm text-body-sm hover:text-primary transition-colors" href="#">API Docs</a>
+<a class="font-body-sm text-body-sm hover:text-primary transition-colors" href="#">Support</a>
+</div>
+</footer>
+</main>
+</div>
+
+
+</body></html>

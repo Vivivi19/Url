@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Link Expired - ShortenIt</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">tailwind.config = {darkMode: "class", theme: {extend: {colors: {"surface-variant": "#d2e4f8", error: "#ba1a1a", "on-tertiary": "#ffffff", tertiary: "#004c7a", outline: "#777587", "surface-container-lowest": "#ffffff", "on-surface": "#0b1d2b", "on-tertiary-fixed-variant": "#004a77", "on-primary-fixed": "#001d32", secondary: "#42617c", "on-surface-variant": "#464555", "on-secondary-container": "#45647e", "on-error-container": "#93000a", "primary-container": "#44637f", "error-container": "#ffdad6", "on-primary-fixed-variant": "#2a4965", "surface-container-highest": "#d2e4f8", "surface-tint": "#42617d", "primary-fixed": "#cde5ff", "secondary-container": "#c1e0ff", "surface-container-high": "#d8eafe", background: "#f7f9ff", "on-primary-container": "#c0dfff", surface: "#f7f9ff", "inverse-on-surface": "#e7f2ff", "on-tertiary-container": "#c2deff", "outline-variant": "#c7c4d8", "surface-bright": "#f7f9ff", "tertiary-fixed": "#cfe5ff", "secondary-fixed": "#cce5ff", "on-secondary-fixed-variant": "#2a4a63", "on-background": "#0b1d2b", "on-tertiary-fixed": "#001d33", "surface-container": "#e2efff", "tertiary-container": "#296494", "inverse-surface": "#213241", "primary-fixed-dim": "#aacaea", "surface-dim": "#cadcf0", "on-error": "#ffffff", "inverse-primary": "#aacaea", "on-secondary": "#ffffff", "on-secondary-fixed": "#001e31", primary: "#2b4b66", "secondary-fixed-dim": "#aacae8", "tertiary-fixed-dim": "#98cbff", "surface-container-low": "#edf4ff", "on-primary": "#ffffff"}, borderRadius: {DEFAULT: "0.25rem", lg: "0.5rem", xl: "0.75rem", full: "9999px"}, spacing: {lg: "24px", "margin-desktop": "32px", md: "16px", "margin-mobile": "16px", base: "4px", xs: "4px", "2xl": "48px", sm: "8px", gutter: "24px", xl: "32px"}, fontFamily: {"label-md": ["Inter"], "label-sm": ["Inter"], "body-md": ["Inter"], "headline-sm": ["Inter"], "body-lg": ["Inter"], "body-sm": ["Inter"], code: ["Inter"], "headline-md": ["Inter"], "display-lg": ["Inter"], headline: ["Inter"], display: ["Inter"], body: ["Inter"], label: ["Inter"]}, fontSize: {"label-md": ["14px", {lineHeight: "20px", letterSpacing: "0.01em", fontWeight: "500"}], "label-sm": ["12px", {lineHeight: "16px", fontWeight: "600"}], "body-md": ["16px", {lineHeight: "24px", fontWeight: "400"}], "headline-sm": ["20px", {lineHeight: "28px", fontWeight: "600"}], "body-lg": ["18px", {lineHeight: "28px", fontWeight: "400"}], "body-sm": ["14px", {lineHeight: "20px", fontWeight: "400"}], code: ["14px", {lineHeight: "20px", fontWeight: "400"}], "headline-md": ["24px", {lineHeight: "32px", letterSpacing: "-0.01em", fontWeight: "600"}], "display-lg": ["36px", {lineHeight: "44px", letterSpacing: "-0.02em", fontWeight: "700"}]}}}};</script>
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col font-sans">
+<!-- TopNavBar (Suppressed intentionally as per rules for linear/transactional/splash screens, but providing a minimalist header for branding) -->
+<header class="w-full flex justify-center items-center py-xl absolute top-0 left-0 z-10">
+<div class="font-headline-md text-headline-md font-bold text-primary flex items-center gap-sm">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">link</span>
+             ShortenIt
+        </div>
+</header>
+<main class="flex-grow flex items-center justify-center p-margin-mobile md:p-margin-desktop relative">
+<!-- Abstract Background Decoration -->
+<div class="absolute inset-0 overflow-hidden pointer-events-none opacity-20">
+<div class="absolute -top-[20%] -right-[10%] w-[70vw] h-[70vw] rounded-full bg-gradient-to-br from-error-container to-transparent blur-3xl"></div>
+<div class="absolute -bottom-[20%] -left-[10%] w-[50vw] h-[50vw] rounded-full bg-gradient-to-tr from-surface-variant to-transparent blur-3xl"></div>
+</div>
+<div class="bg-surface-container-lowest rounded-xl shadow-md p-lg md:p-xl w-full max-w-md text-center relative z-10 border border-outline-variant flex flex-col items-center">
+<div class="w-16 h-16 rounded-full bg-error-container flex items-center justify-center mb-md">
+<span class="material-symbols-outlined text-error text-[32px]" data-icon="warning" style="font-variation-settings: 'FILL' 1;">warning</span>
+</div>
+<h1 class="font-headline-md text-headline-md text-on-surface mb-xs">This URL has expired</h1>
+<p class="font-body-md text-body-md text-on-surface-variant mb-lg">
+                This link was set to expire on <strong class="text-on-surface font-semibold">Oct 24, 2024</strong> and is no longer active.
+            </p>
+<div class="bg-surface-container w-full rounded-lg p-md mb-lg border border-outline-variant flex flex-col gap-xs">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider text-left">Expired Link</span>
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-outline text-[18px]">link_off</span>
+<span class="font-code text-code text-on-surface line-through opacity-70 truncate">shrt.it/q8x9Z2</span>
+</div>
+</div>
+<a class="w-full bg-primary text-on-primary font-label-md text-label-md rounded-lg py-sm px-md flex items-center justify-center gap-xs hover:bg-on-primary-fixed-variant transition-colors duration-200" href="#">
+                Go to Dashboard
+            </a>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-background text-primary font-body-sm text-body-sm full-width bottom-0 border-t border-outline-variant flex flex-col md:flex-row justify-between items-center py-xl px-margin-desktop max-w-7xl mx-auto w-full z-10 relative">
+<div class="font-label-md text-label-md font-bold text-on-surface mb-md md:mb-0">
+            © 2024 ShortenIt SaaS. All rights reserved.
+        </div>
+<nav class="flex gap-md">
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="#">Terms of Service</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="#">API Docs</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="#">Support</a>
+</nav>
+</footer>
+</body></html>
