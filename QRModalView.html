@@ -16,21 +16,21 @@
 <div class="bg-surface-container-lowest rounded-xl shadow-md w-full max-w-[400px] flex flex-col p-lg relative border border-outline-variant">
 <div class="flex justify-between items-center mb-md">
 <h2 class="font-headline-sm text-headline-sm text-on-surface">QR Code for Short URL</h2>
-<button class="text-on-surface-variant hover:bg-surface-variant rounded-full p-2 transition-colors">
+<a href="Dashboard.html" class="text-on-surface-variant hover:bg-surface-variant rounded-full p-2 transition-colors inline-flex">
 <span class="material-symbols-outlined" data-icon="close">close</span>
-</button>
+</a>
 </div>
 <div class="flex-1 flex flex-col items-center justify-center py-lg">
 <div class="bg-white p-4 rounded-lg shadow-sm border border-outline-variant mb-md">
-<img class="w-[200px] h-[200px] object-cover" data-alt="A highly detailed mock QR code image. It should be a crisp, black and white square code pattern on a stark white background, typical of modern URL sharing. The style should be minimal and functional, fitting a corporate modern software interface, without any complex background elements or distractions." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAmCRi9kKLSGDhnn1PID7EJzYFS-iZpHMxqQySNhnLdAWlEir1vXfkVmOpBkvsbvxltdcy8XnwCpFM28SusnYW_Ka4rUZVswC2XcG02gtqRMXI6JgOllaYF_fWELXIR0_M2LNcJ2AYTryITa74LdHVO0Rodg2Gjldtn_RUiV3rchftYXBN8TVLzZATbdOSx_QPbknbI_dwv8IsrIFUYvJY7jru7SuGCjWYQi-pzheOk2QuLppvpfby-"/>
+<img id="qrCodeImage" class="w-[200px] h-[200px] object-cover" alt="QR Code" src=""/>
 </div>
 <div class="flex items-center gap-sm bg-surface-container-low px-4 py-2 rounded-lg border border-outline-variant w-full max-w-[300px] mb-lg">
 <span class="material-symbols-outlined text-primary text-xl" data-icon="link">link</span>
-<span class="font-code text-code text-on-surface flex-1 truncate">shrt.it/x7b9Qp</span>
+<span id="shortUrlText" class="font-code text-code text-on-surface flex-1 truncate">shrt.it/x7b9Qp</span>
 </div>
 </div>
 <div class="flex gap-md w-full">
-<button class="flex-1 flex items-center justify-center gap-xs px-4 py-2 rounded-lg border border-outline-variant text-on-surface font-label-md text-label-md hover:bg-surface-variant transition-colors">
+<button id="copyUrlButton" class="flex-1 flex items-center justify-center gap-xs px-4 py-2 rounded-lg border border-outline-variant text-on-surface font-label-md text-label-md hover:bg-surface-variant transition-colors">
 <span class="material-symbols-outlined text-[18px]" data-icon="content_copy">content_copy</span>
                     Copy URL
                 </button>
@@ -41,4 +41,24 @@
 </div>
 </div>
 </div>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const copyBtn = document.getElementById('copyUrlButton');
+    const shortUrlText = document.getElementById('shortUrlText');
+
+    copyBtn.addEventListener('click', async () => {
+      const text = shortUrlText.textContent.trim();
+      try {
+        await navigator.clipboard.writeText(text);
+        copyBtn.textContent = 'Copied!';
+        setTimeout(() => {
+          copyBtn.innerHTML = '<span class="material-symbols-outlined text-[18px]" data-icon="content_copy">content_copy</span>\n                    Copy URL';
+        }, 1500);
+      } catch (err) {
+        console.error('Clipboard copy failed:', err);
+        window.alert('Could not copy the URL.');
+      }
+    });
+  });
+</script>
 </body></html>
