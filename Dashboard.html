@@ -48,9 +48,14 @@
 </li>
 </ul>
 <div class="mt-auto pt-lg border-t border-outline-variant">
-<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant dark:text-surface-variant hover:text-error hover:bg-error-container transition-colors opacity-80 transition-all duration-150" href="LandingPage.html">
-<span class="material-symbols-outlined">logout</span>
-<span class="font-label-md text-label-md">Logout</span>
+<a
+    href="#"
+    id="logoutBtn"
+    class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant dark:text-surface-variant hover:text-error hover:bg-error-container transition-colors opacity-80 transition-all duration-150">
+
+    <span class="material-symbols-outlined">logout</span>
+    <span class="font-label-md text-label-md">Logout</span>
+
 </a>
 </div>
 </nav>
@@ -173,7 +178,29 @@ Custom Expiration Date & Time
 </footer>
 </main>
 </div>
+<script src="auth.js"></script>
 <script src="script.js"></script>
+
+<script>
+    const idToken = localStorage.getItem("idToken");
+
+    if (!idToken) {
+        window.location.href = "Login.html";
+    }
+
+    document
+        .getElementById("logoutBtn")
+        .addEventListener("click", function(event) {
+
+            event.preventDefault();
+
+            localStorage.removeItem("accessToken");
+            localStorage.removeItem("idToken");
+            localStorage.removeItem("refreshToken");
+
+            window.location.href = "Login.html";
+        });
+</script>
 
 
 </body></html>

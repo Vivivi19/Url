@@ -33,7 +33,7 @@
 <p class="font-body-sm text-body-sm text-on-surface-variant mt-xs">Welcome back. Please log in to your account.</p>
 </div>
 <!-- Form -->
-<form action="Dashboard.html" class="space-y-lg" method="GET">
+<form id="login-form" class="space-y-lg">
 <!-- Email Input -->
 <div>
 <label class="block font-label-md text-label-md text-on-surface mb-xs" for="email">Email Address</label>
@@ -89,4 +89,66 @@
             });
         });
     </script>
+    <script src="auth.js"></script>
+
+<script>
+    document
+        .getElementById("login-form")
+        .addEventListener("submit", async function (event) {
+
+            event.preventDefault();
+
+            const email =
+                document.getElementById("email").value.trim();
+
+            const password =
+                document.getElementById("password").value;
+
+            if (!email || !password) {
+                alert("Please enter your email and password.");
+                return;
+            }
+
+            try {
+
+                const result = await loginUser(email, password);
+
+                console.log("Login successful:", result);
+
+                // Store tokens temporarily
+                localStorage.setItem(
+                    "accessToken",
+                    result.AuthenticationResult.AccessToken
+                );
+
+                localStorage.setItem(
+                    "idToken",
+                    result.AuthenticationResult.IdToken
+                );
+
+                localStorage.setItem(
+                    "refreshToken",
+                    result.AuthenticationResult.RefreshToken
+                );
+
+                // Store logged-in user's email
+                localStorage.setItem(
+                    "userEmail",
+                    email
+                );
+
+                window.location.href = "Dashboard.html";
+
+            } catch (error) {
+
+                console.error("Login error:", error);
+
+                alert(
+                    error.message ||
+                    "Invalid email or password."
+                );
+            }
+
+        });
+</script>
 </body></html>

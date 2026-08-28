@@ -1126,13 +1126,9 @@ async function loadAnalytics() {
      * Analytics.html?shortCode=aHZkUT
      */
 
-    const params =
-        new URLSearchParams(
-            window.location.search
-        );
+    const params = new URLSearchParams(window.location.search);
 
-    const shortCode =
-        params.get("shortCode");
+    const shortCode = params.get("shortCode") || localStorage.getItem("analyticsShortCode");
 
 
     /*

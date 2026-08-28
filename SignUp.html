@@ -80,37 +80,87 @@
 </p>
 </div>
 </div>
+<script src="auth.js"></script>
+
 <script>
-        function updateStrength(password) {
-            const bar = document.getElementById('strength-bar');
-            const text = document.getElementById('strength-text');
-            
-            let strength = 0;
-            if (password.length > 5) strength += 25;
-            if (password.length > 8) strength += 25;
-            if (/[A-Z]/.test(password)) strength += 25;
-            if (/[0-9]/.test(password) && /[^A-Za-z0-9]/.test(password)) strength += 25;
+    function updateStrength(password) {
+        const bar = document.getElementById('strength-bar');
+        const text = document.getElementById('strength-text');
 
-            bar.style.width = strength + '%';
+        let strength = 0;
 
-            if (strength <= 25) {
-                bar.className = 'h-full transition-all duration-300 bg-error';
-                text.textContent = 'Weak';
-                text.className = 'font-label-sm text-label-sm mt-1 text-right text-error';
-            } else if (strength <= 75) {
-                bar.className = 'h-full transition-all duration-300 bg-secondary-fixed-dim';
-                text.textContent = 'Fair';
-                text.className = 'font-label-sm text-label-sm mt-1 text-right text-secondary-fixed-dim';
-            } else {
-                bar.className = 'h-full transition-all duration-300 bg-secondary';
-                text.textContent = 'Strong';
-                text.className = 'font-label-sm text-label-sm mt-1 text-right text-secondary';
-            }
-            
-            if(password.length === 0) {
-                 bar.style.width = '0%';
-                 text.textContent = '';
-            }
+        if (password.length > 5) strength += 25;
+        if (password.length > 8) strength += 25;
+        if (/[A-Z]/.test(password)) strength += 25;
+        if (/[0-9]/.test(password) && /[^A-Za-z0-9]/.test(password)) {
+            strength += 25;
         }
-    </script>
+
+        bar.style.width = strength + '%';
+
+        if (strength <= 25) {
+            bar.className = 'h-full transition-all duration-300 bg-error';
+            text.textContent = 'Weak';
+            text.className =
+                'font-label-sm text-label-sm mt-1 text-right text-error';
+        } else if (strength <= 75) {
+            bar.className =
+                'h-full transition-all duration-300 bg-secondary-fixed-dim';
+            text.textContent = 'Fair';
+            text.className =
+                'font-label-sm text-label-sm mt-1 text-right text-secondary-fixed-dim';
+        } else {
+            bar.className =
+                'h-full transition-all duration-300 bg-secondary';
+            text.textContent = 'Strong';
+            text.className =
+                'font-label-sm text-label-sm mt-1 text-right text-secondary';
+        }
+
+        if (password.length === 0) {
+            bar.style.width = '0%';
+            text.textContent = '';
+        }
+    }
+
+
+    document.querySelector('form').addEventListener('submit', async function(event) {
+
+        event.preventDefault();
+
+        const name = document.getElementById('name').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const password = document.getElementById('password').value;
+        const confirmPassword =
+            document.getElementById('confirm_password').value;
+
+        // Check password confirmation
+        if (password !== confirmPassword) {
+            alert('Passwords do not match.');
+            return;
+        }
+
+        try {
+
+            await signUpUser(name, email, password);
+
+            alert(
+                'Account created successfully! Please check your email for the verification code.'
+            );
+
+            // Go to verification page
+            window.location.href =
+                `Verify.html?email=${encodeURIComponent(email)}`;
+
+        } catch (error) {
+
+            console.error('Signup error:', error);
+
+            alert(
+                error.message || 'Unable to create your account.'
+            );
+        }
+
+    });
+</script>
 </body></html>
