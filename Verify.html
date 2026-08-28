@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+```
+<title>Verify Email - ShortenIt</title>
+
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+    rel="stylesheet">
+
+<script id="tailwind-config">
+    tailwind.config = {
+        darkMode: "class",
+        theme: {
+            extend: {
+                colors: {
+                    "surface-variant": "#d2e4f8",
+                    error: "#ba1a1a",
+                    "on-tertiary": "#ffffff",
+                    tertiary: "#004c7a",
+                    outline: "#777587",
+                    "surface-container-lowest": "#ffffff",
+                    "on-surface": "#0b1d2b",
+                    "on-surface-variant": "#464555",
+                    "primary-container": "#44637f",
+                    "error-container": "#ffdad6",
+                    "surface-container-highest": "#d2e4f8",
+                    "surface-tint": "#42617d",
+                    "primary-fixed": "#cde5ff",
+                    "secondary-container": "#c1e0ff",
+                    "surface-container-high": "#d8eafe",
+                    background: "#f7f9ff",
+                    "on-primary-container": "#c0dfff",
+                    surface: "#f7f9ff",
+                    "inverse-on-surface": "#e7f2ff",
+                    "outline-variant": "#c7c4d8",
+                    "surface-bright": "#f7f9ff",
+                    "surface-container": "#e2efff",
+                    "tertiary-container": "#296494",
+                    "inverse-surface": "#213241",
+                    "primary-fixed-dim": "#aacaea",
+                    "surface-dim": "#cadcf0",
+                    "on-error": "#ffffff",
+                    "inverse-primary": "#aacaea",
+                    "on-secondary": "#ffffff",
+                    primary: "#2b4b66",
+                    "secondary-fixed-dim": "#aacae8",
+                    "surface-container-low": "#edf4ff",
+                    "on-primary": "#ffffff"
+                },
+                borderRadius: {
+                    DEFAULT: "0.25rem",
+                    lg: "0.5rem",
+                    xl: "0.75rem",
+                    full: "9999px"
+                },
+                spacing: {
+                    lg: "24px",
+                    "margin-desktop": "32px",
+                    md: "16px",
+                    "margin-mobile": "16px",
+                    base: "4px",
+                    xs: "4px",
+                    "2xl": "48px",
+                    sm: "8px",
+                    gutter: "24px",
+                    xl: "32px"
+                },
+                fontFamily: {
+                    "label-md": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "body-md": ["Inter"],
+                    "headline-sm": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "body-sm": ["Inter"],
+                    code: ["Inter"],
+                    "headline-md": ["Inter"],
+                    "display-lg": ["Inter"],
+                    headline: ["Inter"],
+                    display: ["Inter"],
+                    body: ["Inter"],
+                    label: ["Inter"]
+                },
+                fontSize: {
+                    "label-md": [
+                        "14px",
+                        {
+                            lineHeight: "20px",
+                            letterSpacing: "0.01em",
+                            fontWeight: "500"
+                        }
+                    ],
+                    "label-sm": [
+                        "12px",
+                        {
+                            lineHeight: "16px",
+                            fontWeight: "600"
+                        }
+                    ],
+                    "body-md": [
+                        "16px",
+                        {
+                            lineHeight: "24px",
+                            fontWeight: "400"
+                        }
+                    ],
+                    "headline-md": [
+                        "24px",
+                        {
+                            lineHeight: "32px",
+                            letterSpacing: "-0.01em",
+                            fontWeight: "600"
+                        }
+                    ]
+                }
+            }
+        }
+    };
+</script>
+
+<style>
+    .material-symbols-outlined {
+        font-variation-settings:
+            'FILL' 1,
+            'wght' 400,
+            'GRAD' 0,
+            'opsz' 24;
+    }
+
+    .bg-pattern {
+        background-color: #f9f9ff;
+        background-image: radial-gradient(#c7c4d8 1px, transparent 1px);
+        background-size: 20px 20px;
+    }
+</style>
+```
+
+</head>
+
+<body
+    class="bg-background text-on-background min-h-screen flex items-center justify-center bg-pattern font-body-md p-margin-mobile md:p-margin-desktop">
+
+```
+<div
+    class="w-full max-w-md bg-surface-container-lowest rounded-xl shadow-sm border border-outline-variant p-lg md:p-xl relative overflow-hidden">
+
+    <!-- Decorative top line -->
+    <div class="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-primary to-primary-container">
+    </div>
+
+
+    <!-- Header -->
+    <div class="text-center mb-lg">
+
+        <div class="flex justify-center mb-md">
+            <div
+                class="w-14 h-14 rounded-full bg-primary-fixed flex items-center justify-center text-primary">
+
+                <span class="material-symbols-outlined text-[28px]">
+                    mail
+                </span>
+
+            </div>
+        </div>
+
+        <h1 class="font-headline-md text-headline-md text-primary font-bold mb-sm">
+            Verify Your Email
+        </h1>
+
+        <p class="font-body-sm text-body-sm text-on-surface-variant">
+            We've sent a verification code to your email address.
+        </p>
+
+    </div>
+
+
+    <!-- Verification Form -->
+    <form id="verify-form" class="space-y-md">
+
+        <!-- Email -->
+        <div class="space-y-sm">
+
+            <label
+                class="block font-label-md text-label-md text-on-surface"
+                for="email">
+                Email Address
+            </label>
+
+            <div class="relative">
+
+                <span
+                    class="absolute inset-y-0 left-0 flex items-center pl-sm text-on-surface-variant">
+
+                    <span class="material-symbols-outlined text-[20px]">
+                        mail
+                    </span>
+
+                </span>
+
+                <input
+                    class="w-full pl-[36px] pr-sm py-sm bg-surface rounded-DEFAULT border border-outline-variant focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all font-body-md text-body-md text-on-surface outline-none"
+                    id="email"
+                    name="email"
+                    type="email"
+                    placeholder="you@example.com"
+                    required>
+            </div>
+
+        </div>
+
+
+        <!-- Verification Code -->
+        <div class="space-y-sm">
+
+            <label
+                class="block font-label-md text-label-md text-on-surface"
+                for="verification-code">
+
+                Verification Code
+
+            </label>
+
+            <div class="relative">
+
+                <span
+                    class="absolute inset-y-0 left-0 flex items-center pl-sm text-on-surface-variant">
+
+                    <span class="material-symbols-outlined text-[20px]">
+                        key
+                    </span>
+
+                </span>
+
+                <input
+                    class="w-full pl-[36px] pr-sm py-sm bg-surface rounded-DEFAULT border border-outline-variant focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all font-body-md text-body-md text-on-surface outline-none tracking-[0.25em]"
+                    id="verification-code"
+                    name="verification-code"
+                    type="text"
+                    inputmode="numeric"
+                    maxlength="6"
+                    placeholder="123456"
+                    required>
+
+            </div>
+
+        </div>
+
+
+        <!-- Verify Button -->
+        <button
+            class="w-full bg-primary hover:bg-on-primary-fixed-variant text-on-primary font-label-md text-label-md py-sm px-md rounded-lg transition-colors flex justify-center items-center gap-2 mt-lg shadow-sm"
+            type="submit">
+
+            Verify Email
+
+            <span class="material-symbols-outlined text-[18px]">
+                verified
+            </span>
+
+        </button>
+
+    </form>
+
+
+    <!-- Resend Code -->
+    <div class="mt-lg text-center">
+
+        <p class="font-body-sm text-body-sm text-on-surface-variant">
+            Didn't receive the code?
+        </p>
+
+        <button
+            id="resend-code"
+            type="button"
+            class="font-label-md text-label-md text-primary hover:underline font-medium mt-1">
+
+            Resend verification code
+
+        </button>
+
+    </div>
+
+
+    <!-- Login -->
+    <div class="mt-lg text-center border-t border-outline-variant pt-lg">
+
+        <p class="font-body-sm text-body-sm text-on-surface-variant">
+
+            Already verified?
+
+            <a
+                class="font-label-md text-label-md text-primary hover:underline font-medium"
+                href="Login.html">
+
+                Login
+
+            </a>
+
+        </p>
+
+    </div>
+
+</div>
+
+
+<!-- Cognito Authentication -->
+<script src="auth.js"></script>
+
+<script>
+
+    // Get email from URL
+    const params = new URLSearchParams(window.location.search);
+
+    const emailFromSignup = params.get("email");
+
+    const emailInput = document.getElementById("email");
+
+    if (emailFromSignup) {
+        emailInput.value = emailFromSignup;
+    }
+
+
+    // Verify account
+    document
+        .getElementById("verify-form")
+        .addEventListener("submit", async function (event) {
+
+            event.preventDefault();
+
+            const email =
+                document.getElementById("email").value.trim();
+
+            const code =
+                document.getElementById("verification-code").value.trim();
+
+            if (!email || !code) {
+                alert("Please enter your email and verification code.");
+                return;
+            }
+
+            try {
+
+                await confirmUserSignUp(email, code);
+
+                alert(
+                    "Email verified successfully! You can now log in."
+                );
+
+                window.location.href = "Login.html";
+
+            } catch (error) {
+
+                console.error("Verification error:", error);
+
+                alert(
+                    error.message ||
+                    "Verification failed. Please check the code and try again."
+                );
+
+            }
+
+        });
+
+
+    // Resend verification code
+    document
+        .getElementById("resend-code")
+        .addEventListener("click", async function () {
+
+            const email =
+                document.getElementById("email").value.trim();
+
+            if (!email) {
+                alert("Please enter your email address.");
+                return;
+            }
+
+            try {
+
+                await resendVerificationCode(email);
+
+                alert(
+                    "A new verification code has been sent to your email."
+                );
+
+            } catch (error) {
+
+                console.error("Resend error:", error);
+
+                alert(
+                    error.message ||
+                    "Unable to resend the verification code."
+                );
+
+            }
+
+        });
+
+</script>
+```
+
+</body>
+
+</html>
