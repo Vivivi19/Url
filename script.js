@@ -171,31 +171,40 @@ if (shortenBtn) {
 
             try {
 
-                const response =
-                    await fetch(
-                        SHORTEN_API,
-                        {
-                            method: "POST",
+               const idToken = localStorage.getItem("idToken");
 
-                            headers: {
-                                "Content-Type":
-                                    "application/json"
-                            },
+if (!idToken) {
+    alert("Please log in first.");
+    window.location.href = "Login.html";
+    return;
+}
 
-                            body: JSON.stringify({
+const response =
+    await fetch(
+        SHORTEN_API,
+        {
+            method: "POST",
 
-                                longUrl:
-                                    longUrl,
+            headers: {
+                "Content-Type":
+                    "application/json",
 
-                                expiration:
-                                    expiration,
+                "Authorization":
+                    `Bearer ${idToken}`
+            },
 
-                                customExpiration:
-                                    customExpiration
+            body: JSON.stringify({
+                longUrl:
+                    longUrl,
 
-                            })
-                        }
-                    );
+                expiration:
+                    expiration,
+
+                customExpiration:
+                    customExpiration
+            })
+        }
+    );
 
 
                 // --------------------------------------
@@ -349,17 +358,25 @@ async function loadMyUrls() {
 
     try {
 
-        const response =
-            await fetch(MY_URLS_API, {
-                method: "GET"
-            });
+        const idToken = localStorage.getItem("idToken");
 
-        if (!response.ok) {
+        if (!idToken) { window.location.href = "Login.html";
+        return;
+}
 
-            throw new Error(
-                `HTTP error: ${response.status}`
-            );
+    const response =
+    await fetch(MY_URLS_API, {
+        method: "GET",
+        headers: {
+            "Authorization": `Bearer ${idToken}`
         }
+    });
+
+if (!response.ok) {
+    throw new Error(
+        `HTTP error: ${response.status}`
+    );
+}
 
         const urls =
             await response.json();
@@ -1174,33 +1191,36 @@ async function loadAnalytics() {
          * GET /analytics/{shortCode}
          */
 
-        const response =
-            await fetch(
-                `${ANALYTICS_API}/${encodeURIComponent(shortCode)}`,
-                {
-                    method: "GET"
-                }
-            );
+        const idToken = localStorage.getItem("idToken");
 
+if (!idToken) {
+    window.location.href = "Login.html";
+    return;
+}
 
-        if (!response.ok) {
-
-            const errorText =
-                await response.text();
-
-            console.error(
-                "Analytics API error:",
-                errorText
-            );
-
-            throw new Error(
-                `HTTP error: ${response.status}`
-            );
+const response = await fetch(
+    `${ANALYTICS_API}/${shortCode}`,
+    {
+        method: "GET",
+        headers: {
+            "Authorization": `Bearer ${idToken}`
         }
+    }
+);
+
+if (!response.ok) {
+    const errorData = await response.json();
+
+    throw new Error(
+        errorData.message ||
+        `HTTP error: ${response.status}`
+    );
+}
 
 
-        let data =
-            await response.json();
+
+let data =
+    await response.json();
 
 
         /*
@@ -2295,17 +2315,24 @@ async function deleteUrl(shortCode) {
         return;
     }
     try {
-        const response = await fetch(
-            `${API_BASE_URL}/${encodeURIComponent(shortCode)}`,
-            {
-                method: "DELETE"
-            }
-        );
-        if (!response.ok) {
-            throw new Error(
-                `HTTP error: ${response.status}`
-            );
-        }
+        const idToken = localStorage.getItem("idToken");
+
+if (!idToken) {
+    window.location.href = "Login.html";
+    return;
+}
+
+const response = await fetch(`${DELETE_API}/${shortCode}`, {
+    method: "DELETE",
+    headers: {
+        "Authorization": `Bearer ${idToken}`
+    }
+});
+
+if (!response.ok) {
+    const data = await response.json();
+    throw new Error(data.message || "Failed to delete URL");
+}
         const data = await response.json();
         console.log("Delete successful:", data);
         alert("URL deleted successfully!");

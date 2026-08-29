@@ -146,27 +146,47 @@ async function loginUser(email, password) {
 
     const data = await response.json();
 
+    console.log("Cognito login response:", data);
+
     if (!response.ok) {
         throw new Error(
             data.message || "Unable to log in."
         );
     }
 
-    // Save authentication tokens
-    localStorage.setItem(
-        "accessToken",
-        data.AuthenticationResult.AccessToken
-    );
+    if (data.AuthenticationResult) {
+        localStorage.setItem(
+            "accessToken",
+            data.AuthenticationResult.AccessToken
+        );
 
-    localStorage.setItem(
-        "idToken",
-        data.AuthenticationResult.IdToken
-    );
+        localStorage.setItem(
+            "idToken",
+            data.AuthenticationResult.IdToken
+        );
 
-    localStorage.setItem(
-        "refreshToken",
-        data.AuthenticationResult.RefreshToken
-    );
+        if (data.AuthenticationResult.RefreshToken) {
+            localStorage.setItem(
+                "refreshToken",
+                data.AuthenticationResult.RefreshToken
+            );
+        }
 
-    return data;
+        return data;
+    }
+
+    throw new Error(
+        "Additional authentication is required."
+    );
+}
+function getIdToken() {
+    return localStorage.getItem("idToken");
+}
+
+function requireAuth() {
+    const token = getIdToken();
+
+    if (!token) {
+        window.location.href = "Login.html";
+    }
 }
