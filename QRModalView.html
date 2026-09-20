@@ -34,7 +34,7 @@
 <span class="material-symbols-outlined text-[18px]" data-icon="content_copy">content_copy</span>
                     Copy URL
                 </button>
-<button class="flex-1 flex items-center justify-center gap-xs px-4 py-2 rounded-lg bg-primary text-on-primary font-label-md text-label-md hover:bg-primary-fixed-variant transition-colors shadow-sm">
+<button id="downloadQrButton" class="flex-1 flex items-center justify-center gap-xs px-4 py-2 rounded-lg bg-primary text-on-primary font-label-md text-label-md hover:bg-primary-fixed-variant transition-colors shadow-sm">
 <span class="material-symbols-outlined text-[18px]" data-icon="download">download</span>
                     Download QR
                 </button>
@@ -45,6 +45,29 @@
   document.addEventListener('DOMContentLoaded', () => {
     const copyBtn = document.getElementById('copyUrlButton');
     const shortUrlText = document.getElementById('shortUrlText');
+    const qrCodeImage = document.getElementById('qrCodeImage');
+    const downloadQrButton = document.getElementById('downloadQrButton');
+    const shortUrl = localStorage.getItem('shortUrl');
+    const shortCode = localStorage.getItem('shortCode');
+
+    if (!shortUrl) {
+      window.location.href = 'Dashboard.html';
+      return;
+    }
+
+    shortUrlText.textContent = shortUrl;
+    shortUrlText.title = shortUrl;
+    qrCodeImage.src =
+      `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(shortUrl)}`;
+    qrCodeImage.alt = `QR Code for ${shortUrl}`;
+
+    downloadQrButton.addEventListener('click', () => {
+      const downloadLink = document.createElement('a');
+      downloadLink.href = qrCodeImage.src;
+      downloadLink.download = `${shortCode || 'short-url'}-qr.png`;
+      downloadLink.target = '_blank';
+      downloadLink.click();
+    });
 
     copyBtn.addEventListener('click', async () => {
       const text = shortUrlText.textContent.trim();

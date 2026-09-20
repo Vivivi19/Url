@@ -221,8 +221,29 @@ const response =
                         errorText
                     );
 
+                    if (response.status === 401 || response.status === 403) {
+                        localStorage.removeItem("idToken");
+                        localStorage.removeItem("accessToken");
+                        throw new Error(
+                            "Your session has expired. Please log in again."
+                        );
+                    }
+
+                    let serverMessage = errorText;
+
+                    try {
+                        const errorData = JSON.parse(errorText);
+                        serverMessage =
+                            errorData.message ||
+                            errorData.error ||
+                            errorData.body ||
+                            serverMessage;
+                    } catch {
+                        // Keep the raw response when the API does not return JSON.
+                    }
+
                     throw new Error(
-                        `HTTP error: ${response.status}`
+                        serverMessage || `HTTP error: ${response.status}`
                     );
                 }
 
@@ -231,8 +252,16 @@ const response =
                 // Read response
                 // --------------------------------------
 
-                const data =
+                let data =
                     await response.json();
+
+                if (typeof data.body === "string") {
+                    try {
+                        data = JSON.parse(data.body);
+                    } catch {
+                        throw new Error("The shortening API returned an invalid response.");
+                    }
+                }
 
 
                 console.log(
@@ -246,7 +275,14 @@ const response =
                 // --------------------------------------
 
                 const shortUrl =
-                    `${API_BASE_URL}/${data.shortCode}`;
+                    data.shortUrl ||
+                    (data.shortCode
+                        ? `${API_BASE_URL}/${data.shortCode}`
+                        : "");
+
+                if (!shortUrl) {
+                    throw new Error("The shortening API did not return a short URL.");
+                }
 
 
                 // --------------------------------------
@@ -260,7 +296,7 @@ const response =
 
                 localStorage.setItem(
                     "shortCode",
-                    data.shortCode
+                    data.shortCode || shortUrl.split("/").pop()
                 );
 
                 localStorage.setItem(
@@ -280,12 +316,11 @@ const response =
 
 
                 // --------------------------------------
-                // Show result
+                // Show result page
                 // --------------------------------------
 
-                alert(
-                    "Short URL: " + shortUrl
-                );
+                window.location.href = "QRModalView.html";
+                return;
 
 
                 // --------------------------------------
@@ -322,6 +357,7 @@ const response =
                 );
 
                 alert(
+                    error.message ||
                     "Something went wrong while shortening the URL."
                 );
             }
@@ -356,6 +392,24 @@ async function loadMyUrls() {
         return;
     }
 
+    if (desktopBody) {
+        desktopBody.innerHTML = `
+            <tr>
+                <td colspan="6" class="py-lg px-md text-center text-on-surface-variant">
+                    Loading URLs...
+                </td>
+            </tr>
+        `;
+    }
+
+    if (mobileBody) {
+        mobileBody.innerHTML = `
+            <div class="p-lg text-center text-on-surface-variant">
+                Loading URLs...
+            </div>
+        `;
+    }
+
     try {
 
         const idToken = localStorage.getItem("idToken");
@@ -363,6 +417,7 @@ async function loadMyUrls() {
         if (!idToken) { window.location.href = "Login.html";
         return;
 }
+
 
     const response =
     await fetch(MY_URLS_API, {
@@ -486,6 +541,67 @@ if (!response.ok) {
                 </div>
             `;
         }
+    }
+}
+
+
+// ======================================================
+// DASHBOARD STATISTICS
+// ======================================================
+
+async function loadDashboardStats() {
+
+    const totalUrlsStat = document.getElementById("totalUrlsStat");
+    const totalClicksStat = document.getElementById("totalClicksStat");
+    const activeUrlsStat = document.getElementById("activeUrlsStat");
+    const expiredUrlsStat = document.getElementById("expiredUrlsStat");
+
+    if (!totalUrlsStat) {
+        return;
+    }
+
+    const idToken = localStorage.getItem("idToken");
+
+    if (!idToken) {
+        window.location.href = "Login.html";
+        return;
+    }
+
+    try {
+        const response = await fetch(MY_URLS_API, {
+            method: "GET",
+            headers: {
+                "Authorization": `Bearer ${idToken}`
+            }
+        });
+
+        if (!response.ok) {
+            throw new Error(`HTTP error: ${response.status}`);
+        }
+
+        let urls = await response.json();
+
+        if (urls && !Array.isArray(urls) && Array.isArray(urls.body)) {
+            urls = urls.body;
+        }
+
+        if (!Array.isArray(urls)) {
+            throw new Error("The URL API returned an invalid response.");
+        }
+
+        const expiredUrls = urls.filter(url => getStatus(url) === "Expired");
+        const activeUrls = urls.length - expiredUrls.length;
+        const totalClicks = urls.reduce(
+            (total, url) => total + Number(url.clicks || 0),
+            0
+        );
+
+        totalUrlsStat.textContent = urls.length.toLocaleString();
+        totalClicksStat.textContent = totalClicks.toLocaleString();
+        activeUrlsStat.textContent = activeUrls.toLocaleString();
+        expiredUrlsStat.textContent = expiredUrls.length.toLocaleString();
+    } catch (error) {
+        console.error("Error loading dashboard statistics:", error);
     }
 }
 
@@ -1176,6 +1292,12 @@ async function loadAnalytics() {
         return;
     }
 
+    const initialShortUrl =
+        `${API_BASE_URL}/${shortCode}`;
+
+    analyticsPage.classList.remove("loading");
+    analyticsPage.textContent = initialShortUrl;
+
 
     try {
 
@@ -1237,7 +1359,7 @@ let data =
             typeof data.body === "string"
         ) {
 
-            data =
+                data =
                 JSON.parse(data.body);
         }
 
@@ -1257,6 +1379,14 @@ let data =
 
             data =
                 data.data;
+        }
+
+        if (data.analytics && typeof data.analytics === "object") {
+            data = data.analytics;
+        }
+
+        if (data.url && typeof data.url === "object") {
+            data = { ...data.url, ...data };
         }
 
 
@@ -1348,9 +1478,29 @@ function updateAnalyticsPage(data) {
      * SHORT URL
      */
 
+    const shortCode =
+        data.shortCode ||
+        data.short_code ||
+        localStorage.getItem("analyticsShortCode");
+
+    const createdAt =
+        data.createdAt ||
+        data.created_at ||
+        data.creationDate ||
+        data.creation_date ||
+        localStorage.getItem("createdAt");
+
+    const expiresAt =
+        data.expiresAt ||
+        data.expires_at ||
+        "";
+
     const shortUrl =
         data.shortUrl ||
-        `${API_BASE_URL}/${data.shortCode}`;
+        data.short_url ||
+        (shortCode
+            ? `${API_BASE_URL}/${shortCode}`
+            : "-");
 
 
     if (shortUrlElement) {
@@ -1370,11 +1520,18 @@ function updateAnalyticsPage(data) {
 
     if (longUrlElement) {
 
+        const longUrl =
+            data.longUrl ||
+            data.long_url ||
+            data.originalUrl ||
+            data.original_url ||
+            "-";
+
         longUrlElement.textContent =
-            data.longUrl || "-";
+            longUrl;
 
         longUrlElement.href =
-            data.longUrl || "#";
+            longUrl === "-" ? "#" : longUrl;
     }
 
 
@@ -1387,7 +1544,9 @@ function updateAnalyticsPage(data) {
         const clicks =
             Number(
                 data.totalClicks ??
+                data.total_clicks ??
                 data.clicks ??
+                data.click_count ??
                 0
             );
 
@@ -1404,7 +1563,7 @@ function updateAnalyticsPage(data) {
 
         creationDateElement.textContent =
             formatAnalyticsDate(
-                data.createdAt
+                createdAt
             );
     }
 
@@ -1417,7 +1576,10 @@ function updateAnalyticsPage(data) {
 
         lastAccessedElement.textContent =
             formatRelativeTime(
-                data.lastAccessed
+                data.lastAccessed ||
+                data.last_accessed ||
+                data.lastClickedAt ||
+                data.last_clicked_at
             );
     }
 
@@ -1429,9 +1591,9 @@ function updateAnalyticsPage(data) {
     if (expirationDateElement) {
 
         expirationDateElement.textContent =
-            data.expiresAt
+            expiresAt
                 ? formatAnalyticsDate(
-                    data.expiresAt
+                    expiresAt
                 )
                 : "Never";
     }
@@ -1482,14 +1644,18 @@ function updateAnalyticsStatus(data) {
     let expired = false;
 
 
+    const expiresAt =
+        data.expiresAt ||
+        data.expires_at;
+
     if (data.expired === true) {
 
         expired = true;
 
-    } else if (data.expiresAt) {
+    } else if (expiresAt) {
 
         const expiration =
-            new Date(data.expiresAt);
+            new Date(expiresAt);
 
         if (
             !isNaN(expiration.getTime()) &&
@@ -1549,7 +1715,9 @@ function updateAnalyticsSummary(data) {
     const clicks =
         Number(
             data.totalClicks ??
+            data.total_clicks ??
             data.clicks ??
+            data.click_count ??
             0
         );
 
@@ -1561,10 +1729,17 @@ function updateAnalyticsSummary(data) {
     let ageDays = 1;
 
 
-    if (data.createdAt) {
+    const createdAt =
+        data.createdAt ||
+        data.created_at ||
+        data.creationDate ||
+        data.creation_date ||
+        localStorage.getItem("createdAt");
+
+    if (createdAt) {
 
         const created =
-            new Date(data.createdAt);
+            new Date(createdAt);
 
         const now =
             new Date();
@@ -1595,9 +1770,12 @@ function updateAnalyticsSummary(data) {
      */
 
     const average =
-    Number(
-        data.averageClicksPerDay ?? 0
-    );
+        Number(
+            data.averageClicksPerDay ??
+            data.average_clicks_per_day ??
+            data.avgClicksPerDay ??
+            (clicks / ageDays)
+        );
 
 
     if (avgElement) {
@@ -1614,10 +1792,27 @@ function updateAnalyticsSummary(data) {
     const history =
         getAnalyticsClickHistory(data);
 
+    if (data.highestDay || data.highest_day) {
+        if (highestDayElement) {
+            highestDayElement.textContent = formatAnalyticsChartDate(
+                data.highestDay || data.highest_day
+            );
+        }
+
+        if (highestClicksElement) {
+            highestClicksElement.textContent = `${Number(
+                data.highestDayClicks ??
+                data.highest_day_clicks ??
+                data.highestClicks ??
+                0
+            ).toLocaleString()} clicks`;
+        }
+    }
+
 
     if (
-        !history ||
-        history.length === 0
+        (!history || history.length === 0) &&
+        !(data.highestDay || data.highest_day)
     ) {
 
         if (highestDayElement) {
@@ -2006,10 +2201,41 @@ function renderAnalyticsLocations(data) {
     container.innerHTML = "";
 
 
-    const locations =
+    let locations =
         data.topLocations ||
+        data.top_locations ||
         data.locations ||
+        data.countryBreakdown ||
+        data.country_breakdown ||
         [];
+
+    if (!Array.isArray(locations) && typeof locations === "object") {
+        locations = Object.entries(locations).map(([name, value]) => ({
+            name,
+            clicks: typeof value === "object" ? value.clicks : value,
+            percentage: typeof value === "object"
+                ? value.percentage ?? value.percent
+                : null
+        }));
+    }
+
+    if (Array.isArray(locations)) {
+        const totalLocationClicks = locations.reduce(
+            (total, location) => total + Number(
+                location.clicks || location.count || 0
+            ),
+            0
+        );
+
+        locations = locations.map(location => ({
+            ...location,
+            percentage: location.percentage ?? location.percent ?? (
+                totalLocationClicks > 0
+                    ? (Number(location.clicks || location.count || 0) / totalLocationClicks) * 100
+                    : 0
+            )
+        }));
+    }
 
 
     if (
@@ -2041,6 +2267,8 @@ function renderAnalyticsLocations(data) {
 
             const name =
                 location.country ||
+                location.countryCode ||
+                location.country_code ||
                 location.location ||
                 location.name ||
                 "Unknown";
@@ -2304,6 +2532,67 @@ function showAnalyticsError(
         );
     }
 }
+
+
+// ======================================================
+// ANALYTICS ACTIONS
+// ======================================================
+
+function bindAnalyticsActions() {
+
+    const copyButton = document.getElementById("copyButton");
+    const qrButton = document.getElementById("qrButton");
+
+    if (!copyButton && !qrButton) {
+        return;
+    }
+
+    const getAnalyticsShortUrl = () => {
+        const data = window.analyticsData || {};
+        const shortCode =
+            data.shortCode ||
+            data.short_code ||
+            localStorage.getItem("analyticsShortCode");
+
+        return data.shortUrl ||
+            data.short_url ||
+            (shortCode ? `${API_BASE_URL}/${shortCode}` : "");
+    };
+
+    if (copyButton && !copyButton.dataset.analyticsBound) {
+        copyButton.dataset.analyticsBound = "true";
+        copyButton.addEventListener("click", async () => {
+            const shortUrl = getAnalyticsShortUrl();
+
+            if (!shortUrl) {
+                alert("No short URL is available to copy.");
+                return;
+            }
+
+            await copyUrl(shortUrl);
+            const originalText = copyButton.innerHTML;
+            copyButton.textContent = "Copied";
+
+            setTimeout(() => {
+                copyButton.innerHTML = originalText;
+            }, 1500);
+        });
+    }
+
+    if (qrButton && !qrButton.dataset.analyticsBound) {
+        qrButton.dataset.analyticsBound = "true";
+        qrButton.addEventListener("click", () => {
+            const shortUrl = getAnalyticsShortUrl();
+
+            if (shortUrl) {
+                showQRCode(
+                    shortUrl,
+                    shortUrl.split("/").pop()
+                );
+            }
+        });
+    }
+}
 // ======================================================
 // DELETE
 // ======================================================
@@ -2515,28 +2804,13 @@ document.addEventListener(
 
         loadMyUrls();
 
+        loadDashboardStats();
+
         loadAnalytics();
+
+        bindAnalyticsActions();
 
     }
 );
 
 
-// ======================================================
-// AUTO REFRESH
-// ======================================================
-
-/*
- * Refresh every 5 seconds.
- *
- * This means the Clicks column will automatically
- * update after somebody uses a shortened URL.
- */
-
-setInterval(
-    () => {
-
-        loadMyUrls();
-
-    },
-    5000
-);

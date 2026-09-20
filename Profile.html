@@ -20,11 +20,11 @@
 <span class="font-headline-md text-headline-md font-bold text-primary dark:text-inverse-primary">ShortenIt</span>
 </div>
 <div class="flex items-center gap-4">
-<button class="text-on-surface-variant hover:bg-surface-variant rounded-full p-2 transition-colors active:scale-95 duration-100 flex items-center justify-center h-10 w-10">
+<button id="notificationBtn" aria-label="Notifications" class="text-on-surface-variant hover:bg-surface-variant rounded-full p-2 transition-colors active:scale-95 duration-100 flex items-center justify-center h-10 w-10">
 <span class="material-symbols-outlined" data-icon="notifications">notifications</span>
 </button>
 <div class="h-8 w-8 rounded-full overflow-hidden border border-outline-variant bg-surface-variant flex-shrink-0">
-<img alt="User Profile" class="h-full w-full object-cover" data-alt="A professional headshot of a person looking directly at the camera. The background is a clean, minimal office environment with soft natural lighting. The mood is approachable and confident. The aesthetic aligns with a modern tech company." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCTJFU-fjGVdK0KqsUBljZEA7cSW9qXbhMgsI89hzF9k9RbdskG18BlrfsAyiplrakBMEv3Pn97SKPWqPBxB8jLJgf3JzULj4bsVVdKsFXVnU5LyHq3VNoRsNWZ4biUMjDCMzMh33i5n3TMqLyNaOn1Mj7Rx-vDXE1wfyDnDby1zpylhciyJ1WlGzQ9dIGjEqVJPPYyJWcbfM50JLxtWkuEPGIyT3YaH2BT0e2zfOrR2Nc2ciH0pnH-">
+<span id="mobileAvatar" class="h-full w-full flex items-center justify-center font-semibold text-primary">?</span>
 </div>
 </div>
 </header>
@@ -34,11 +34,11 @@
 <!-- Header -->
 <div class="flex items-center gap-sm px-sm pt-sm">
 <div class="h-10 w-10 rounded-full overflow-hidden border border-outline-variant bg-surface-variant flex-shrink-0">
-<img alt="User Avatar" class="h-full w-full object-cover" data-alt="A small, stylized avatar of a person, simple and clean, suitable for a dashboard side navigation header. The style is modern minimalist with a subtle pop of color against a light background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAfZhskdyMEcvccLCuAXcoNe6RF0IlYiaJ4DBWLCSMEmO2QUbeUya8OCkNqa2g9NT6YLK1fbzf0qyTLtWQTTb0afSXoe1SFprQ5K4JCjhM9wrBkCHy_QuDkb3LrkYUvLWiL9-mNEOgxcaK1RSi1Sugci-WdwZK22wckqu4npgvHffbiEDY4fdKePCtpxbmi82yyYdiH94DEEJKYTSbQm3tKcaJyUZ-2k-ev0qE5FLrNaXNAV2L6ciO3">
+<span id="sidebarAvatar" class="h-full w-full flex items-center justify-center font-semibold text-primary">?</span>
 </div>
 <div>
 <div class="font-headline-md text-headline-md font-bold text-primary dark:text-inverse-primary">ShortenIt</div>
-<div class="font-label-sm text-label-sm text-on-surface-variant">Pro Plan</div>
+<div id="sidebarPlan" class="font-label-sm text-label-sm text-on-surface-variant">Account</div>
 </div>
 </div>
 <!-- Navigation Links -->
@@ -63,7 +63,7 @@
 </div>
 <!-- Footer Navigation -->
 <div class="mt-auto pt-4 border-t border-outline-variant">
-<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-low dark:hover:bg-surface-variant transition-colors font-label-md text-label-md" href="Login.html">
+<a id="logoutBtn" class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-low dark:hover:bg-surface-variant transition-colors font-label-md text-label-md" href="Login.html">
 <span class="material-symbols-outlined" data-icon="logout">logout</span>
                     Logout
                 </a>
@@ -71,8 +71,8 @@
 </div>
 </nav>
 <!-- Main Content -->
-<main class="flex-1 overflow-y-auto w-full relative">
-<div class="max-w-7xl mx-auto px-margin-mobile md:px-margin-desktop py-lg md:py-2xl flex flex-col gap-lg">
+<main class="flex-1 min-h-0 h-full overflow-y-auto w-full relative">
+<div class="min-h-full w-full px-margin-mobile md:px-margin-desktop py-lg md:py-2xl flex flex-col gap-lg">
 <!-- Page Header -->
 <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
 <div>
@@ -87,21 +87,28 @@
 <!-- Profile Summary Card -->
 <div class="bg-surface-container-lowest rounded-xl border border-outline-variant shadow-sm p-lg flex flex-col items-center text-center relative overflow-hidden">
 <div class="h-24 w-24 rounded-full overflow-hidden border-4 border-white shadow-sm mb-4 bg-surface-variant z-10">
-<img alt="John Doe Avatar" class="h-full w-full object-cover" data-alt="A clear, bright, close-up portrait of a person smiling softly. The lighting is flattering and soft, highlighting the face. The background is a slightly blurred, light neutral color to maintain focus on the subject. Minimalist, professional aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDPSel0uqRltfYEjxd_w2am7ePLoebCHEN6TNQkWF6Wlr7Q2ZU3ZXKPUhsM4YuAHhvgGuJ745Wp_Gp3E3jwhYAiQgtVvv04r7_q9bric7u9Ccxv8up0YVeQx4ijATUj2WTtL_5xZmiJ6JLPv0xNYexWtgNARerj3KAEWx-jdto0tng_msz3jBhuBKm5x7Psv8cHIhGbh0Yy7mjfz3XmO4XLpD0hlQgIvua1yXNk7LRBV84lQ6eNQWCK">
+<span id="profileAvatar" class="h-full w-full flex items-center justify-center text-2xl font-semibold text-primary">?</span>
 </div>
-<h2 class="font-headline-sm text-headline-sm text-on-surface">John Doe</h2>
-<p class="font-body-sm text-body-sm text-on-surface-variant mb-4">john.doe@example.com</p>
-<div class="w-full flex items-center justify-between py-3 border-t border-outline-variant mt-2">
-<span class="font-label-md text-label-md text-on-surface-variant">Member since</span>
-<span class="font-body-sm text-body-sm text-on-surface font-medium">Oct 2023</span>
-</div>
+<h2 id="profileName" class="font-headline-sm text-headline-sm text-on-surface">Loading...</h2>
+<p id="profileEmail" class="font-body-sm text-body-sm text-on-surface-variant mb-4">Loading...</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant mb-4">Created <span id="accountCreatedDate">Loading...</span></p>
 <!-- Actions -->
 <div class="w-full flex flex-col gap-3 mt-4">
-<button class="w-full bg-primary hover:bg-primary-container text-on-primary font-label-md text-label-md py-2.5 px-4 rounded-lg transition-colors flex items-center justify-center gap-2">
+<label for="profilePhotoInput" class="w-full bg-surface-container hover:bg-surface-container-high text-primary font-label-md text-label-md py-2.5 px-4 rounded-lg transition-colors border border-outline-variant flex items-center justify-center gap-2 cursor-pointer">
+<span class="material-symbols-outlined" style="font-size: 18px;">photo_camera</span>
+                                Upload Photo
+</label>
+<input id="profilePhotoInput" class="hidden" type="file" accept="image/png,image/jpeg,image/webp">
+<button id="removePhotoBtn" class="hidden w-full text-error font-label-md text-label-md py-2 px-4 rounded-lg border border-error-container">Remove Photo</button>
+<button id="editProfileBtn" class="w-full bg-primary hover:bg-primary-container text-on-primary font-label-md text-label-md py-2.5 px-4 rounded-lg transition-colors flex items-center justify-center gap-2">
 <span class="material-symbols-outlined" style="font-size: 18px;">edit</span>
                                 Edit Profile
                             </button>
-<button class="w-full bg-surface-container hover:bg-surface-container-high text-error font-label-md text-label-md py-2.5 px-4 rounded-lg transition-colors border border-error-container flex items-center justify-center gap-2">
+<button id="changePasswordBtn" class="w-full bg-surface-container hover:bg-surface-container-high text-primary font-label-md text-label-md py-2.5 px-4 rounded-lg transition-colors border border-outline-variant flex items-center justify-center gap-2">
+<span class="material-symbols-outlined" style="font-size: 18px;">lock_reset</span>
+                                Change Password
+                            </button>
+<button id="cardLogoutBtn" class="w-full bg-surface-container hover:bg-surface-container-high text-error font-label-md text-label-md py-2.5 px-4 rounded-lg transition-colors border border-error-container flex items-center justify-center gap-2">
 <span class="material-symbols-outlined" style="font-size: 18px;">logout</span>
                                 Logout
                             </button>
@@ -118,7 +125,7 @@
 </div>
 <div>
 <p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Total URLs Created</p>
-<p class="font-headline-md text-headline-md text-on-surface font-bold">1,248</p>
+<p id="totalUrlsStat" class="font-headline-md text-headline-md text-on-surface font-bold">0</p>
 </div>
 </div>
 <div class="bg-surface-container-lowest rounded-xl border border-outline-variant shadow-sm p-md flex items-center gap-4 transition-shadow hover:shadow-md">
@@ -127,57 +134,77 @@
 </div>
 <div>
 <p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Total Clicks</p>
-<p class="font-headline-md text-headline-md text-on-surface font-bold">45.2k</p>
+<p id="totalClicksStat" class="font-headline-md text-headline-md text-on-surface font-bold">0</p>
 </div>
 </div>
 </div>
-<!-- Account Preferences List -->
-<div class="bg-surface-container-lowest rounded-xl border border-outline-variant shadow-sm overflow-hidden">
+<section class="bg-surface-container-lowest rounded-xl border border-outline-variant shadow-sm overflow-hidden">
 <div class="px-lg py-md border-b border-outline-variant bg-surface-container-low">
-<h3 class="font-headline-sm text-headline-sm text-on-surface">Account Preferences</h3>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Account &amp; Security</h3>
 </div>
-<ul class="flex flex-col divide-y divide-outline-variant">
-<li class="px-lg py-4 flex items-center justify-between hover:bg-surface-container-lowest/50 transition-colors cursor-pointer group">
-<div class="flex flex-col">
-<span class="font-label-md text-label-md text-on-surface group-hover:text-primary transition-colors">Email Notifications</span>
-<span class="font-body-sm text-body-sm text-on-surface-variant">Receive daily summary reports.</span>
+<div class="p-lg grid grid-cols-1 xl:grid-cols-2 gap-lg">
+<div>
+<h4 class="font-label-md text-label-md font-semibold text-on-surface mb-3">Verified contact details</h4>
+<label for="accountEmail" class="block font-label-sm text-label-sm text-on-surface-variant mb-xs">Email address</label>
+<div class="flex gap-sm">
+<input id="accountEmail" type="email" class="min-w-0 flex-1 px-md py-sm rounded-lg border border-outline-variant bg-surface text-on-surface">
+<button id="sendEmailCodeBtn" type="button" class="px-md py-sm rounded-lg bg-primary text-on-primary whitespace-nowrap">Verify</button>
 </div>
-<div class="relative inline-block w-12 mr-2 align-middle select-none transition duration-200 ease-in">
-<input checked="" class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 border-surface-variant appearance-none cursor-pointer transition-transform duration-200 ease-in-out checked:translate-x-6 checked:border-primary" id="email-toggle" name="toggle" type="checkbox">
-<label class="toggle-label block overflow-hidden h-6 rounded-full bg-surface-variant cursor-pointer transition-colors duration-200 ease-in-out" for="email-toggle"></label>
+<div id="emailVerificationBox" class="hidden mt-sm flex gap-sm">
+<input id="emailVerificationCode" inputmode="numeric" maxlength="6" placeholder="Verification code" class="min-w-0 flex-1 px-md py-sm rounded-lg border border-outline-variant bg-surface text-on-surface">
+<button id="verifyEmailBtn" type="button" class="px-md py-sm rounded-lg border border-outline-variant text-primary whitespace-nowrap">Confirm</button>
 </div>
-<style>
-                                    /* Quick inline style for the toggle hack to work visually without external JS for simplicity here */
-                                    .toggle-checkbox:checked + .toggle-label {
-                                        background-color: theme('colors.primary');
-                                    }
-                                </style>
-</li>
-<li class="px-lg py-4 flex items-center justify-between hover:bg-surface-container-lowest/50 transition-colors cursor-pointer group">
-<div class="flex flex-col">
-<span class="font-label-md text-label-md text-on-surface group-hover:text-primary transition-colors">Two-Factor Authentication (2FA)</span>
-<span class="font-body-sm text-body-sm text-on-surface-variant">Secure your account with an extra layer of security.</span>
+<label for="accountPhone" class="block font-label-sm text-label-sm text-on-surface-variant mt-md mb-xs">Recovery phone</label>
+<div class="flex gap-sm">
+<input id="accountPhone" type="tel" placeholder="+15551234567" class="min-w-0 flex-1 px-md py-sm rounded-lg border border-outline-variant bg-surface text-on-surface">
+<button id="savePhoneBtn" type="button" class="px-md py-sm rounded-lg bg-primary text-on-primary whitespace-nowrap">Save</button>
 </div>
-<button class="font-label-md text-label-md text-primary hover:underline">Enable</button>
-</li>
-<li class="px-lg py-4 flex items-center justify-between hover:bg-surface-container-lowest/50 transition-colors cursor-pointer group">
-<div class="flex flex-col">
-<span class="font-label-md text-label-md text-on-surface group-hover:text-primary transition-colors">Theme Preference</span>
-<span class="font-body-sm text-body-sm text-on-surface-variant">Choose your visual aesthetic.</span>
+<div id="phoneVerificationBox" class="hidden mt-sm flex gap-sm">
+<input id="phoneVerificationCode" inputmode="numeric" maxlength="6" placeholder="Verification code" class="min-w-0 flex-1 px-md py-sm rounded-lg border border-outline-variant bg-surface text-on-surface">
+<button id="verifyPhoneBtn" type="button" class="px-md py-sm rounded-lg border border-outline-variant text-primary whitespace-nowrap">Confirm</button>
 </div>
-<div class="flex items-center gap-2">
-<span class="font-body-sm text-body-sm text-on-surface">Light Mode</span>
-<span class="material-symbols-outlined text-on-surface-variant" style="font-size: 20px;">chevron_right</span>
+<p id="contactMessage" class="font-body-sm text-body-sm text-on-surface-variant mt-sm" role="status"></p>
 </div>
-</li>
-</ul>
+<div>
+<h4 class="font-label-md text-label-md font-semibold text-on-surface mb-3">Preferences</h4>
+<label for="languageSelect" class="block font-label-sm text-label-sm text-on-surface-variant mb-xs">Language</label>
+<select id="languageSelect" class="w-full px-md py-sm rounded-lg border border-outline-variant bg-surface text-on-surface">
+<option value="en-US">English (US)</option>
+<option value="en-GB">English (UK)</option>
+<option value="en-IN">English (India)</option>
+</select>
+<label for="dateFormatSelect" class="block font-label-sm text-label-sm text-on-surface-variant mt-md mb-xs">Date format</label>
+<select id="dateFormatSelect" class="w-full px-md py-sm rounded-lg border border-outline-variant bg-surface text-on-surface">
+<option value="short">Sep 20, 2026</option>
+<option value="long">20 September 2026</option>
+<option value="iso">2026-09-20</option>
+</select>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-sm">These preferences are saved in this browser.</p>
 </div>
+<div class="xl:col-span-2 border-t border-outline-variant pt-lg">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-md">
+<div>
+<h4 class="font-label-md text-label-md font-semibold text-on-surface">Active sessions</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">This browser is currently signed in.</p>
+</div>
+<button id="signOutAllBtn" type="button" class="px-md py-sm rounded-lg border border-outline-variant text-primary">Log out of all devices</button>
+</div>
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-md mt-lg pt-lg border-t border-error-container">
+<div>
+<h4 class="font-label-md text-label-md font-semibold text-error">Delete account</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Permanently remove your Cognito account.</p>
+</div>
+<button id="deleteAccountBtn" type="button" class="px-md py-sm rounded-lg bg-error text-on-error">Delete account</button>
+</div>
+</div>
+</div>
+</section>
 </div>
 </div>
 </div>
 <!-- Footer Component -->
 <footer class="bg-background dark:bg-background border-t border-outline-variant full-width bottom-0 mt-auto">
-<div class="flex flex-col md:flex-row justify-between items-center py-xl px-margin-desktop max-w-7xl mx-auto gap-4">
+<div class="flex flex-col md:flex-row justify-between items-center py-xl px-margin-desktop w-full gap-4">
 <div class="font-label-md text-label-md font-bold text-on-surface">
                     © 2024 ShortenIt SaaS. All rights reserved.
                 </div>
@@ -190,9 +217,341 @@
 </div>
 </footer>
 </main>
+<div id="editProfileModal" class="hidden fixed inset-0 z-50 items-center justify-center bg-on-surface/40 p-4">
+<form id="editProfileForm" class="w-full max-w-md rounded-xl bg-surface-container-lowest p-lg shadow-xl" autocomplete="off">
+<div class="flex items-center justify-between mb-lg">
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Edit profile</h2>
+<button id="closeProfileModal" type="button" aria-label="Close" class="material-symbols-outlined text-on-surface-variant">close</button>
+</div>
+<label for="editName" class="block font-label-sm text-label-sm text-on-surface-variant mb-xs">Name</label>
+<input id="editName" required maxlength="80" class="w-full px-md py-sm rounded-lg border border-outline-variant bg-surface text-on-surface focus:ring-2 focus:ring-primary" type="text">
+<label for="editEmail" class="block font-label-sm text-label-sm text-on-surface-variant mt-md mb-xs">Email</label>
+<input id="editEmail" disabled class="w-full px-md py-sm rounded-lg border border-outline-variant bg-surface-container text-on-surface-variant" type="email">
+<p id="profileFormMessage" class="font-body-sm text-body-sm mt-md" role="status"></p>
+<div class="flex justify-end gap-sm mt-lg">
+<button id="cancelProfileEdit" type="button" class="px-md py-sm rounded-lg border border-outline-variant text-on-surface-variant">Cancel</button>
+<button type="submit" class="px-md py-sm rounded-lg bg-primary text-on-primary">Save changes</button>
+</div>
+</form>
+</div>
+<div id="profileToast" class="hidden fixed bottom-6 right-6 z-50 rounded-lg bg-on-surface px-lg py-md text-surface shadow-lg" role="status"></div>
+<div id="passwordModal" class="hidden fixed inset-0 z-50 items-center justify-center bg-on-surface/40 p-4">
+<form id="passwordForm" class="w-full max-w-md rounded-xl bg-surface-container-lowest p-lg shadow-xl" autocomplete="off">
+<div class="flex items-center justify-between mb-lg">
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Change password</h2>
+<button id="closePasswordModal" type="button" aria-label="Close" class="material-symbols-outlined text-on-surface-variant">close</button>
+</div>
+<label for="currentPassword" class="block font-label-sm text-label-sm text-on-surface-variant mb-xs">Current password</label>
+<input id="currentPassword" required class="w-full px-md py-sm rounded-lg border border-outline-variant bg-surface text-on-surface focus:ring-2 focus:ring-primary" type="password" autocomplete="current-password">
+<label for="newPassword" class="block font-label-sm text-label-sm text-on-surface-variant mt-md mb-xs">New password</label>
+<input id="newPassword" required minlength="8" class="w-full px-md py-sm rounded-lg border border-outline-variant bg-surface text-on-surface focus:ring-2 focus:ring-primary" type="password" autocomplete="new-password">
+<label for="confirmPassword" class="block font-label-sm text-label-sm text-on-surface-variant mt-md mb-xs">Confirm new password</label>
+<input id="confirmPassword" required minlength="8" class="w-full px-md py-sm rounded-lg border border-outline-variant bg-surface text-on-surface focus:ring-2 focus:ring-primary" type="password" autocomplete="new-password">
+<p id="passwordMessage" class="font-body-sm text-body-sm mt-md" role="status"></p>
+<div class="flex justify-end gap-sm mt-lg">
+<button id="cancelPasswordChange" type="button" class="px-md py-sm rounded-lg border border-outline-variant text-on-surface-variant">Cancel</button>
+<button type="submit" class="px-md py-sm rounded-lg bg-primary text-on-primary">Update password</button>
+</div>
+</form>
+</div>
+<script src="script.js"></script>
 <script src="auth.js"></script>
 <script>
     requireAuth();
+
+    const profileName = document.getElementById("profileName");
+    const profileEmail = document.getElementById("profileEmail");
+    const profileModal = document.getElementById("editProfileModal");
+    const editProfileForm = document.getElementById("editProfileForm");
+    const editName = document.getElementById("editName");
+    const editEmail = document.getElementById("editEmail");
+    const formMessage = document.getElementById("profileFormMessage");
+    const passwordModal = document.getElementById("passwordModal");
+    const passwordForm = document.getElementById("passwordForm");
+    const passwordMessage = document.getElementById("passwordMessage");
+    const accountCreatedDate = document.getElementById("accountCreatedDate");
+    const accountEmail = document.getElementById("accountEmail");
+    const accountPhone = document.getElementById("accountPhone");
+    const contactMessage = document.getElementById("contactMessage");
+    const languageSelect = document.getElementById("languageSelect");
+    const dateFormatSelect = document.getElementById("dateFormatSelect");
+    const photoInput = document.getElementById("profilePhotoInput");
+    const removePhotoBtn = document.getElementById("removePhotoBtn");
+
+    let currentUserAttributes = [];
+    let currentUserCreatedDate = null;
+
+    function showToast(message) {
+        const toast = document.getElementById("profileToast");
+        toast.textContent = message;
+        toast.classList.remove("hidden");
+        setTimeout(() => toast.classList.add("hidden"), 2500);
+    }
+
+    function userAttribute(attributes, name) {
+        const attribute = attributes.find(item => item.Name === name);
+        return attribute ? attribute.Value : "";
+    }
+
+    function setAvatar(name) {
+        const initials = (name || "?")
+            .trim()
+            .split(/\s+/)
+            .slice(0, 2)
+            .map(part => part[0])
+            .join("")
+            .toUpperCase();
+
+        ["mobileAvatar", "sidebarAvatar", "profileAvatar"].forEach(id => {
+            document.getElementById(id).textContent = initials || "?";
+        });
+
+        setProfilePhoto(localStorage.getItem("profilePhoto"));
+    }
+
+    function setProfilePhoto(photo) {
+        ["mobileAvatar", "sidebarAvatar", "profileAvatar"].forEach(id => {
+            const avatar = document.getElementById(id);
+            avatar.style.backgroundImage = photo ? `url("${photo}")` : "";
+            avatar.style.backgroundSize = photo ? "cover" : "";
+            avatar.style.backgroundPosition = photo ? "center" : "";
+            avatar.style.backgroundRepeat = photo ? "no-repeat" : "";
+            avatar.style.color = photo ? "transparent" : "";
+        });
+
+        removePhotoBtn.classList.toggle("hidden", !photo);
+    }
+
+    function formatAccountDate(value) {
+        if (!value) return "Unknown";
+        const date = new Date(value);
+        const locale = localStorage.getItem("profileLanguage") || "en-US";
+        const format = localStorage.getItem("profileDateFormat") || "short";
+
+        if (format === "iso") return date.toISOString().slice(0, 10);
+        return date.toLocaleDateString(locale, format === "long"
+            ? { day: "numeric", month: "long", year: "numeric" }
+            : { month: "short", day: "numeric", year: "numeric" });
+    }
+
+    async function loadProfile() {
+        try {
+            const user = await getCurrentUser();
+            const claims = getIdTokenClaims();
+            const attributes = user.UserAttributes || [];
+            currentUserAttributes = attributes;
+            currentUserCreatedDate = user.UserCreateDate;
+            const name = userAttribute(attributes, "name") || claims.name || "ShortenIt user";
+            const email = userAttribute(attributes, "email") || claims.email || localStorage.getItem("userEmail") || "";
+
+            profileName.textContent = name;
+            profileEmail.textContent = email;
+            accountCreatedDate.textContent = formatAccountDate(user.UserCreateDate);
+            accountEmail.value = email;
+            accountPhone.value = userAttribute(attributes, "phone_number");
+            document.getElementById("sidebarPlan").textContent = "Personal account";
+            setAvatar(name);
+            editName.value = name;
+            editEmail.value = email;
+            localStorage.setItem("userEmail", email);
+        } catch (error) {
+            console.error("Unable to load profile:", error);
+            profileName.textContent = "Unable to load profile";
+            profileEmail.textContent = error.message;
+        }
+    }
+
+    function closeProfileModal() {
+        profileModal.classList.add("hidden");
+        profileModal.classList.remove("flex");
+        formMessage.textContent = "";
+    }
+
+    document.getElementById("editProfileBtn").addEventListener("click", () => {
+        profileModal.classList.remove("hidden");
+        profileModal.classList.add("flex");
+        editName.focus();
+    });
+    document.getElementById("closeProfileModal").addEventListener("click", closeProfileModal);
+    document.getElementById("cancelProfileEdit").addEventListener("click", closeProfileModal);
+    profileModal.addEventListener("click", event => {
+        if (event.target === profileModal) closeProfileModal();
+    });
+
+    editProfileForm.addEventListener("submit", async event => {
+        event.preventDefault();
+        const name = editName.value.trim();
+        if (!name) return;
+        formMessage.textContent = "Saving...";
+        try {
+            await updateCurrentUser([{ Name: "name", Value: name }]);
+            profileName.textContent = name;
+            setAvatar(name);
+            formMessage.textContent = "Profile updated.";
+            setTimeout(closeProfileModal, 700);
+        } catch (error) {
+            formMessage.textContent = error.message;
+        }
+    });
+
+    function closePasswordModal() {
+        passwordModal.classList.add("hidden");
+        passwordModal.classList.remove("flex");
+        passwordForm.reset();
+        passwordMessage.textContent = "";
+    }
+
+    document.getElementById("changePasswordBtn").addEventListener("click", () => {
+        passwordModal.classList.remove("hidden");
+        passwordModal.classList.add("flex");
+        document.getElementById("currentPassword").focus();
+    });
+    document.getElementById("closePasswordModal").addEventListener("click", closePasswordModal);
+    document.getElementById("cancelPasswordChange").addEventListener("click", closePasswordModal);
+    passwordModal.addEventListener("click", event => {
+        if (event.target === passwordModal) closePasswordModal();
+    });
+
+    passwordForm.addEventListener("submit", async event => {
+        event.preventDefault();
+        const currentPassword = document.getElementById("currentPassword").value;
+        const newPassword = document.getElementById("newPassword").value;
+        const confirmPassword = document.getElementById("confirmPassword").value;
+
+        if (newPassword !== confirmPassword) {
+            passwordMessage.textContent = "New passwords do not match.";
+            return;
+        }
+
+        passwordMessage.textContent = "Updating password...";
+
+        try {
+            await changeCurrentPassword(currentPassword, newPassword);
+            passwordMessage.textContent = "Password updated successfully.";
+            setTimeout(closePasswordModal, 900);
+        } catch (error) {
+            passwordMessage.textContent = error.message;
+        }
+    });
+
+    document.getElementById("cardLogoutBtn").addEventListener("click", logoutUser);
+    document.getElementById("logoutBtn").addEventListener("click", event => {
+        event.preventDefault();
+        logoutUser();
+    });
+
+    document.getElementById("notificationBtn").addEventListener("click", () => {
+        showToast("You have no new notifications");
+    });
+
+    photoInput.addEventListener("change", event => {
+        const file = event.target.files[0];
+        if (!file) return;
+        if (file.size > 2 * 1024 * 1024) {
+            showToast("Photo must be smaller than 2 MB");
+            photoInput.value = "";
+            return;
+        }
+
+        const reader = new FileReader();
+        reader.addEventListener("load", () => {
+            localStorage.setItem("profilePhoto", reader.result);
+            setProfilePhoto(reader.result);
+        });
+        reader.readAsDataURL(file);
+    });
+
+    removePhotoBtn.addEventListener("click", () => {
+        localStorage.removeItem("profilePhoto");
+        photoInput.value = "";
+        setAvatar(profileName.textContent);
+    });
+
+    document.getElementById("sendEmailCodeBtn").addEventListener("click", async () => {
+        const email = accountEmail.value.trim();
+        if (!email) return;
+        contactMessage.textContent = "Saving email and sending verification code...";
+        try {
+            await updateCurrentUser([{ Name: "email", Value: email }]);
+            document.getElementById("emailVerificationBox").classList.remove("hidden");
+            contactMessage.textContent = "Check your email for the verification code.";
+        } catch (error) {
+            contactMessage.textContent = error.message;
+        }
+    });
+
+    document.getElementById("verifyEmailBtn").addEventListener("click", async () => {
+        const code = document.getElementById("emailVerificationCode").value.trim();
+        if (!code) return;
+        try {
+            await verifyCurrentUserAttribute("email", code);
+            profileEmail.textContent = accountEmail.value.trim();
+            localStorage.setItem("userEmail", accountEmail.value.trim());
+            contactMessage.textContent = "Email verified successfully.";
+            document.getElementById("emailVerificationBox").classList.add("hidden");
+        } catch (error) {
+            contactMessage.textContent = error.message;
+        }
+    });
+
+    document.getElementById("savePhoneBtn").addEventListener("click", async () => {
+        const phone = accountPhone.value.trim();
+        if (!phone) return;
+        contactMessage.textContent = "Saving phone and sending verification code...";
+        try {
+            await updateCurrentUser([{ Name: "phone_number", Value: phone }]);
+            document.getElementById("phoneVerificationBox").classList.remove("hidden");
+            contactMessage.textContent = "Check your phone for the verification code.";
+        } catch (error) {
+            contactMessage.textContent = error.message;
+        }
+    });
+
+    document.getElementById("verifyPhoneBtn").addEventListener("click", async () => {
+        const code = document.getElementById("phoneVerificationCode").value.trim();
+        if (!code) return;
+        try {
+            await verifyCurrentUserAttribute("phone_number", code);
+            contactMessage.textContent = "Recovery phone verified successfully.";
+            document.getElementById("phoneVerificationBox").classList.add("hidden");
+        } catch (error) {
+            contactMessage.textContent = error.message;
+        }
+    });
+
+    languageSelect.value = localStorage.getItem("profileLanguage") || "en-US";
+    dateFormatSelect.value = localStorage.getItem("profileDateFormat") || "short";
+    languageSelect.addEventListener("change", () => {
+        localStorage.setItem("profileLanguage", languageSelect.value);
+        accountCreatedDate.textContent = formatAccountDate(currentUserCreatedDate);
+    });
+    dateFormatSelect.addEventListener("change", () => {
+        localStorage.setItem("profileDateFormat", dateFormatSelect.value);
+        accountCreatedDate.textContent = formatAccountDate(currentUserCreatedDate);
+    });
+
+    document.getElementById("signOutAllBtn").addEventListener("click", async () => {
+        if (!confirm("Log out of all devices? You will need to sign in again.")) return;
+        try {
+            await signOutAllDevices();
+            logoutUser();
+        } catch (error) {
+            showToast(error.message);
+        }
+    });
+
+    document.getElementById("deleteAccountBtn").addEventListener("click", async () => {
+        if (!confirm("Delete your account permanently? This cannot be undone.")) return;
+        if (prompt("Type DELETE to confirm account deletion:") !== "DELETE") return;
+        try {
+            await deleteCurrentUser();
+            logoutUser();
+        } catch (error) {
+            showToast(error.message);
+        }
+    });
+
+    loadProfile();
 </script>
 
 

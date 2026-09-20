@@ -183,6 +183,227 @@ function getIdToken() {
     return localStorage.getItem("idToken");
 }
 
+    function getAccessToken() {
+        return localStorage.getItem("accessToken");
+    }
+
+    function getIdTokenClaims() {
+        const token = getIdToken();
+
+        if (!token) {
+            return {};
+        }
+
+        try {
+            const payload = token.split(".")[1]
+                .replace(/-/g, "+")
+                .replace(/_/g, "/");
+            return JSON.parse(atob(payload));
+        } catch (error) {
+            console.warn("Unable to read the identity token.", error);
+            return {};
+        }
+    }
+
+    async function getCurrentUser() {
+        const accessToken = getAccessToken();
+
+        if (!accessToken) {
+            throw new Error("Your session has expired. Please log in again.");
+        }
+
+        const response = await fetch(
+            `https://cognito-idp.${REGION}.amazonaws.com/`,
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/x-amz-json-1.1",
+                    "X-Amz-Target":
+                        "AWSCognitoIdentityProviderService.GetUser"
+                },
+                body: JSON.stringify({
+                    AccessToken: accessToken
+                })
+            }
+        );
+
+        const data = await response.json();
+
+        if (!response.ok) {
+            throw new Error(data.message || "Unable to load your profile.");
+        }
+
+        return data;
+    }
+
+    async function updateCurrentUser(attributes) {
+        const accessToken = getAccessToken();
+
+        if (!accessToken) {
+            throw new Error("Your session has expired. Please log in again.");
+        }
+
+        const response = await fetch(
+            `https://cognito-idp.${REGION}.amazonaws.com/`,
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/x-amz-json-1.1",
+                    "X-Amz-Target":
+                        "AWSCognitoIdentityProviderService.UpdateUserAttributes"
+                },
+                body: JSON.stringify({
+                    AccessToken: accessToken,
+                    UserAttributes: attributes
+                })
+            }
+        );
+
+        const data = await response.json();
+
+        if (!response.ok) {
+            throw new Error(data.message || "Unable to update your profile.");
+        }
+
+        return data;
+    }
+
+    async function changeCurrentPassword(previousPassword, proposedPassword) {
+        const accessToken = getAccessToken();
+
+        if (!accessToken) {
+            throw new Error("Your session has expired. Please log in again.");
+        }
+
+        const response = await fetch(
+            `https://cognito-idp.${REGION}.amazonaws.com/`,
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/x-amz-json-1.1",
+                    "X-Amz-Target":
+                        "AWSCognitoIdentityProviderService.ChangePassword"
+                },
+                body: JSON.stringify({
+                    AccessToken: accessToken,
+                    PreviousPassword: previousPassword,
+                    ProposedPassword: proposedPassword
+                })
+            }
+        );
+
+        const data = await response.json();
+
+        if (!response.ok) {
+            throw new Error(data.message || "Unable to change your password.");
+        }
+
+        return data;
+    }
+
+    async function verifyCurrentUserAttribute(attributeName, code) {
+        const accessToken = getAccessToken();
+
+        if (!accessToken) {
+            throw new Error("Your session has expired. Please log in again.");
+        }
+
+        const response = await fetch(
+            `https://cognito-idp.${REGION}.amazonaws.com/`,
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/x-amz-json-1.1",
+                    "X-Amz-Target":
+                        "AWSCognitoIdentityProviderService.VerifyUserAttribute"
+                },
+                body: JSON.stringify({
+                    AccessToken: accessToken,
+                    AttributeName: attributeName,
+                    Code: code
+                })
+            }
+        );
+
+        const data = await response.json();
+
+        if (!response.ok) {
+            throw new Error(data.message || "Unable to verify this contact.");
+        }
+
+        return data;
+    }
+
+    async function signOutAllDevices() {
+        const accessToken = getAccessToken();
+
+        if (!accessToken) {
+            throw new Error("Your session has expired. Please log in again.");
+        }
+
+        const response = await fetch(
+            `https://cognito-idp.${REGION}.amazonaws.com/`,
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/x-amz-json-1.1",
+                    "X-Amz-Target":
+                        "AWSCognitoIdentityProviderService.GlobalSignOut"
+                },
+                body: JSON.stringify({
+                    AccessToken: accessToken
+                })
+            }
+        );
+
+        const data = await response.json();
+
+        if (!response.ok) {
+            throw new Error(data.message || "Unable to sign out all devices.");
+        }
+
+        return data;
+    }
+
+    async function deleteCurrentUser() {
+        const accessToken = getAccessToken();
+
+        if (!accessToken) {
+            throw new Error("Your session has expired. Please log in again.");
+        }
+
+        const response = await fetch(
+            `https://cognito-idp.${REGION}.amazonaws.com/`,
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/x-amz-json-1.1",
+                    "X-Amz-Target":
+                        "AWSCognitoIdentityProviderService.DeleteUser"
+                },
+                body: JSON.stringify({
+                    AccessToken: accessToken
+                })
+            }
+        );
+
+        const data = await response.json();
+
+        if (!response.ok) {
+            throw new Error(data.message || "Unable to delete your account.");
+        }
+
+        return data;
+    }
+
+    function logoutUser() {
+        localStorage.removeItem("accessToken");
+        localStorage.removeItem("idToken");
+        localStorage.removeItem("refreshToken");
+        localStorage.removeItem("userEmail");
+        window.location.href = "Login.html";
+    }
+
 function requireAuth() {
     const token = getIdToken();
 

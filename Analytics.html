@@ -790,10 +790,92 @@
 
     </div>
 
-<script src="script.js"></script>
+<script src="script.js?v=20260917"></script>
 <script src="auth.js"></script>
 <script>
     requireAuth();
+
+    const analyticsShortUrl = document.getElementById("analyticsShortUrl");
+    const storedShortUrl = localStorage.getItem("shortUrl");
+    const storedShortCode = localStorage.getItem("analyticsShortCode");
+
+    if (analyticsShortUrl && (storedShortUrl || storedShortCode)) {
+        analyticsShortUrl.classList.remove("loading");
+        analyticsShortUrl.textContent = storedShortUrl ||
+            "https://a6okq9rcua.execute-api.us-east-1.amazonaws.com/" + storedShortCode;
+    }
+
+    const analyticsLongUrl = document.getElementById("analyticsLongUrl");
+    const storedLongUrl = localStorage.getItem("longUrl");
+
+    if (analyticsLongUrl && storedLongUrl) {
+        analyticsLongUrl.textContent = storedLongUrl;
+        analyticsLongUrl.href = storedLongUrl;
+    }
+
+    const analyticsCreationDate = document.getElementById("creationDate");
+    const storedCreatedAt = localStorage.getItem("createdAt");
+
+    if (analyticsCreationDate && storedCreatedAt) {
+        analyticsCreationDate.textContent = new Date(storedCreatedAt).toLocaleString(
+            "en-IN",
+            { day: "2-digit", month: "short", year: "numeric", hour: "2-digit", minute: "2-digit" }
+        );
+    }
+
+    const getStoredAnalyticsUrl = () => {
+        return localStorage.getItem("shortUrl") ||
+            "https://a6okq9rcua.execute-api.us-east-1.amazonaws.com/" +
+            localStorage.getItem("analyticsShortCode");
+    };
+
+    const copyButton = document.getElementById("copyButton");
+    const qrButton = document.getElementById("qrButton");
+
+    if (copyButton && !copyButton.dataset.analyticsBound) {
+        copyButton.dataset.analyticsBound = "true";
+        copyButton.addEventListener("click", async () => {
+            const shortUrl = getStoredAnalyticsUrl();
+
+            if (!shortUrl || shortUrl.endsWith("null")) {
+                alert("No short URL is available to copy.");
+                return;
+            }
+
+            try {
+                await navigator.clipboard.writeText(shortUrl);
+                copyButton.dataset.originalText = copyButton.innerHTML;
+                copyButton.textContent = "Copied";
+                setTimeout(() => {
+                    copyButton.innerHTML = copyButton.dataset.originalText;
+                }, 1500);
+            } catch (error) {
+                alert("Could not copy the URL.");
+            }
+        });
+    }
+
+    if (qrButton && !qrButton.dataset.analyticsBound) {
+        qrButton.dataset.analyticsBound = "true";
+        qrButton.addEventListener("click", () => {
+            const shortUrl = getStoredAnalyticsUrl();
+
+            if (!shortUrl || shortUrl.endsWith("null")) {
+                alert("No short URL is available for the QR code.");
+                return;
+            }
+
+            const qrWindow = window.open(
+                "https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=" +
+                    encodeURIComponent(shortUrl),
+                "_blank"
+            );
+
+            if (!qrWindow) {
+                alert("Please allow pop-ups to open the QR code.");
+            }
+        });
+    }
 </script>
    
 </body>
